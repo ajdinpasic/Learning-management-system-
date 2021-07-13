@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('lms-dashboard/windmill-dashboard/public/index');
+    return view('injectors.index_injector');
 });
