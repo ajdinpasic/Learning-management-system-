@@ -10,19 +10,19 @@ class registerController extends Controller
     
     public function post(Request $request) {
        
-        //validate form  ex email , password 
+        
         $newUser=$request->validate([
             'username' => 'required|min:3|max:8|alpha',
             'email' => 'required|email',
             'password' => 'required|min:4|confirmed',
         ]); 
-        // register user to db
+        
         User::create([
             'name' => $request->username,
             'email' => $request->email, 
             'password' => $request->password, 
         ]);
-        // redirect
+        
         return redirect()->route('login');
 
     }
