@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\registerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,8 @@ Route::get('/login',function(){
 
 })->name('login');
 
-Route::get('/register',function(){
-    return view('layouts.register'); 
+Route::view('/register','layouts.register')->name('register');
 
-})->name('register');
+Route::post('/register',[registerController::class,'post']);
+
+
