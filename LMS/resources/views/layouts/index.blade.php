@@ -8,15 +8,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <!--<link rel="stylesheet" href="./assets/css/tailwind.output.css" />-->
-    <!-- <script src="./assets/js/init-alpine.js"></script> -->
-    <script>@yield('js1')</script>
+    
+    <link rel="stylesheet" href="assets/css/tailwind.output.css" />
+     <script src="./assets/js/init-alpine.js"></script> 
+    <!-- <script>@yield('js1')</script> THIS IS OLD-->
     
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <!-- <script src="./assets/js/init-alpine.js"></script> -->
+     <script src="assets/js/init-alpine.js"></script> 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
@@ -25,9 +26,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
     ></script>
-    <!-- <script src="./assets/js/charts-lines.js" defer></script> -->
-    <!--<script src="./assets/js/charts-pie.js" defer></script> -->
-      <style>@yield('css')</style>
+     <script src="assets/js/charts-lines.js" defer></script> 
+    <script src="assets/js/charts-pie.js" defer></script> 
+      <!-- <style>@yield('css')</style> THIS IS OLD -->
   </head>
 
   <body>
@@ -261,7 +262,7 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="">
+                    <a class="w-full" href="{{ route('register') }}">
                       Create account
                     </a>
                   </li>
