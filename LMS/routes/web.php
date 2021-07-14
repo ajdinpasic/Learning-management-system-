@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('injectors.index_injector');
+    return view('layouts.index');
 });
 
 Route::get('/login',function(){
-    return view('injectors.login_injector'); 
+    return view('layouts.login'); 
 
 })->name('login');
+
+Route::get('/register',function(){
+    return view('layouts.register'); 
+
+})->name('register');
