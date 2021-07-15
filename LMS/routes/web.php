@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\indexController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\registerController;
@@ -16,14 +17,14 @@ use App\Http\Controllers\registerController;
 |
 */
 
+Route::redirect('/', '/home', 301);
 
-Route::view('/', 'layouts.index')->name('home');;
+Route::get('/home', [indexController::class, 'index'])->name('home')->middleware('auth');
 
+Route::view('/register', 'layouts.register')->name('register')->middleware('guest');
+Route::post('/register', [registerController::class, 'post'])->middleware('guest');;
 
-Route::view('/register', 'layouts.register')->name('register');
-Route::post('/register', [registerController::class, 'post']);
+Route::view('/login', 'layouts.login')->name('login')->middleware('guest');
+Route::post('/login', [loginController::class, 'post'])->middleware('guest');;
 
-Route::view('/login', 'layouts.login')->name('login');
-Route::post('/login', [loginController::class, 'post']);
-
-Route::post('/logout', [logoutController::class, 'post'])->name('logout');
+Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
