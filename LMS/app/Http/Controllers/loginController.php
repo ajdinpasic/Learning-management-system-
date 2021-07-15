@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Auth;
 class loginController extends Controller
 {
 
-    //
     public function post(Request $request)
     {
-
 
         $userAttempt = $request->validate([
             "email" => "required|email",
