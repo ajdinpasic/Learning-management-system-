@@ -28,3 +28,7 @@ Route::view('/login', 'layouts.login')->name('login')->middleware('guest');
 Route::post('/login', [loginController::class, 'post'])->middleware('guest');;
 
 Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
+
+Route::fallback(function () {
+    return redirect()->route('home');
+});
