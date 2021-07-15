@@ -539,7 +539,7 @@
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
                     <a class="w-full" href="pages/login.html">Login</a>
-                  </li>
+                  </li> 
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
@@ -826,7 +826,13 @@
                             d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                           ></path>
                         </svg>
-                        <span>Log out</span>
+                        <span>
+                          <form name="logoutForm" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                        <span onclick="logoutForm.submit()">Log out</span> 
+                        
+                          </form>
+                        </span>
                       </a>
                     </li>
                   </ul>
