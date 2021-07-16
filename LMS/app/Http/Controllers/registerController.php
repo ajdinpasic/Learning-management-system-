@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\Welcome;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class registerController extends Controller
 {
@@ -26,6 +27,7 @@ class registerController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        Mail::to($request->user())->send(new Welcome);
 
         return redirect()->route('login');
     }
