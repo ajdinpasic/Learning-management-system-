@@ -1023,6 +1023,7 @@
                       </td>
                       
                     </tr>@endforeach
+                    {{ $courses->links() }}
                     @else
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
