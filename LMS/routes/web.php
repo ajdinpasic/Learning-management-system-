@@ -19,16 +19,17 @@ use App\Http\Controllers\registerController;
 
 Route::redirect('/', '/home', 301);
 
-Route::view('/home', 'layouts.index')->name('home')->middleware('auth');
+//Route::view('/home', 'layouts.index')->name('home')->middleware('auth');
+Route::get('/home', [indexController::class, 'index'])->name('home')->middleware('auth');
 
 Route::view('/register', 'layouts.register')->name('register')->middleware('guest');
-Route::post('/register', [registerController::class, 'post'])->middleware('guest');;
+Route::post('/register', [registerController::class, 'post'])->middleware('guest');
 
 Route::view('/login', 'layouts.login')->name('login')->middleware('guest');
-Route::post('/login', [loginController::class, 'post'])->middleware('guest');;
+Route::post('/login', [loginController::class, 'post'])->middleware('guest');
 
 Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
 
 Route::fallback(function () {
-    return redirect()->route('home');
+    return view('layouts.404');
 });
