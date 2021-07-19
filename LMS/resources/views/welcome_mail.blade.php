@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello {{ auth()->user()->name}}
+# Hello {{ $userName }}
 
 We are glad You have created account at our webiste. Enjoy !
 

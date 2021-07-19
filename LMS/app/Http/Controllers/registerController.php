@@ -21,15 +21,14 @@ class registerController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:4|confirmed',
         ]);
-        //dd($request);
-
         User::create([
             'name' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        //Mail::to($request->$request->email)->send(new Welcome);
-
+        $toUser = $request->email;
+        $userName = $request->username;
+        Mail::to($toUser)->send(new Welcome($userName));
         return redirect()->route('login');
     }
 }
