@@ -33,6 +33,10 @@ Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middl
 Route::get('users/{id}', function ($id) {
     return view('layouts.profile_card');
 })->name('profile');
+/*
+Route::get('/test', function () {
+    return view('layouts.profile_card');
+})->middleware('admin'); */
 
 Route::fallback(function () {
     return view('layouts.404');
