@@ -30,6 +30,10 @@ Route::post('/login', [loginController::class, 'post'])->middleware('guest');
 
 Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
 
+Route::get('users/{id}', function ($id) {
+    return view('layouts.profile_card');
+})->name('profile');
+
 Route::fallback(function () {
     return view('layouts.404');
 });
