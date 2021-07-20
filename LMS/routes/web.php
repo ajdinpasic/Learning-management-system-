@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
+use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
 
 /*
@@ -33,10 +34,8 @@ Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middl
 Route::get('users/{id}', function ($id) {
     return view('layouts.profile_card');
 })->name('profile');
-/*
-Route::get('/test', function () {
-    return view('layouts.profile_card');
-})->middleware('admin'); */
+
+Route::get('/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
 
 Route::fallback(function () {
     return view('layouts.404');
