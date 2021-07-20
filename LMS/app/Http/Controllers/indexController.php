@@ -8,8 +8,10 @@ class indexController extends Controller
 {
     public function index()
     {
-        $courses = Course::paginate(3);
-        $total_courses = count($courses);
-        return view('layouts.index', ["courses" => $courses, "total_courses" => $total_courses]);
+        //$courses = Course::where("department", "==", "IT")->paginate(2);
+        $courses = Course::where("department", "=", "IT")->paginate(2);
+        //dd(count($courses));
+        //$total_courses = count($courses);
+        return view('layouts.index', ["courses" => $courses]);
     }
 }
