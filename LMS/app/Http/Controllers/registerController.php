@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\Welcome;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -19,13 +20,47 @@ class registerController extends Controller
         $newUser = $request->validate([
             'username' => 'required|min:3|max:8|alpha',
             'email' => 'required|email',
+            'select' => 'required',
             'password' => 'required|min:4|confirmed',
         ]);
-        User::create([
+        //dd($request);
+        $newUser = User::create([
             'name' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->select == "IT") {
+
+            Course::create([
+                'name' => "Web development",
+                'ects' => 6,
+                'department' => 'IT',
+                'user_id' => $newUser->id,
+            ]);
+
+            Course::create([
+                'name' => "Mobile development",
+                'ects' => 6,
+                'department' => 'IT',
+                'user_id' => $newUser->id,
+            ]);
+
+            Course::create([
+                'name' => "Data Structures",
+                'ects' => 6,
+                'department' => 'IT',
+                'user_id' => $newUser->id,
+            ]);
+
+            Course::create([
+                'name' => "Business",
+                'ects' => 4,
+                'department' => 'IT',
+                'user_id' => $newUser->id,
+            ]);
+        }
+
         $toUser = $request->email;
         $userName = $request->username;
         Mail::to($toUser)->send(new Welcome($userName));
