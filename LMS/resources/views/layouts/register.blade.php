@@ -68,6 +68,23 @@
               @enderror
 
               <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Department
+                </span>
+                <select style="overflow: hidden;"
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
+                  multiple
+                >
+                  <option value="IT">Information technologies</option>
+                  <option value="AR">Architecture</option>
+                  <option value="EEE">Electrical engineering</option>
+                </select>
+              </label>
+              @error('select')
+                <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+              <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Password</span>
                 <input
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
