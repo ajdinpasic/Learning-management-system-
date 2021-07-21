@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class coursesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::where("department", "=", "IT")->paginate(10);
+        //$courses = Course::where("department", "=", "IT")->paginate(10);
+        $courses = $request->user()->course()->select('name', 'ects')->paginate(10);
         return view('layouts.courses', ["courses" => $courses]);
     }
 }
