@@ -7,6 +7,7 @@ use App\Http\Controllers\gradesController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\gradesAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +32,33 @@ Route::view('/login', 'layouts.login')->name('login')->middleware('guest');
 Route::post('/login', [loginController::class, 'post'])->middleware('guest');
 
 Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
-
+/*
 Route::get('users/{id}', function ($id) {
     return view('layouts.profile_card');
 })->name('profile');
 
-Route::get('/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
-
 Route::get('/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
+
+Route::get('/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
+*/
+
+
+Route::name('user.')->group(function () {
+    Route::get('/users/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
+
+    Route::get('/users/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
+
+    Route::get('users/{id}', function ($id) {
+        return view('layouts.profile_card');
+    })->name('profile')->middleware('auth');;
+});
+
+
+
+
+Route::name('admin.')->group(function () {
+    Route::get('/admin/grades', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
+});
 
 Route::fallback(function () {
     return view('layouts.404');
