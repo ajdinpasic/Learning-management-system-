@@ -23,7 +23,6 @@ class registerController extends Controller
             'select' => 'required',
             'password' => 'required|min:4|confirmed',
         ]);
-        //dd($request);
         $newUser = User::create([
             'name' => $request->username,
             'email' => $request->email,
