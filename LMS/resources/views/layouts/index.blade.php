@@ -79,7 +79,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ route('grades') }}"
+                href="{{ route('user.grades') }}"
               >
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -114,7 +114,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="{{ route('courses') }}"
+                href="{{ route('user.courses') }}"
               >
                 <svg
                   class="w-5 h-5"
@@ -178,7 +178,7 @@
                       d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                     ></path>
                   </svg>
-                  <span class="ml-4">Pages</span>
+                  <span class="ml-4">Admin stuff</span>
                 </span>
                 <svg
                   class="w-4 h-4"
@@ -207,7 +207,7 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('login') }}">Login</a>
+                    <a class="w-full" href="{{ route('admin.grades') }}">Enter new grade</a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -710,7 +710,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="{{ route('profile',auth()->user()) }}"
+                        href="{{ route('user.profile',auth()->user()) }}"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
