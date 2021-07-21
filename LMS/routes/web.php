@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\gradesController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
@@ -36,6 +37,8 @@ Route::get('users/{id}', function ($id) {
 })->name('profile');
 
 Route::get('/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
+
+Route::get('/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
 
 Route::fallback(function () {
     return view('layouts.404');
