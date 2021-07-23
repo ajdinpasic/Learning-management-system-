@@ -37,7 +37,7 @@
 <footer>
 	<p>
 		Return back to 
-		<a target="_blank" href="{{ route('home') }}">home page</a>
+		<a href="{{ route('home') }}">home page</a>
 	</p>
 </footer>
 
