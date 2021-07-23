@@ -40,7 +40,7 @@ Route::name('user.')->group(function () {
 
     Route::get('/users/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
 
-    Route::get('/users/{user}', [profileCardController::class, 'index'])->name('profile')->whereNumber('user')->middleware('auth');
+    Route::get('/users/{user}', [profileCardController::class, 'index'])->name('profile')->whereNumber('user')->middleware('auth', 'profile');
 });
 
 Route::name('admin.')->group(function () {
