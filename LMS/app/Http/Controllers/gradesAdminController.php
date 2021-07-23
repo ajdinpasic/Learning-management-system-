@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\GradeEntered;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class gradesAdminController extends Controller
 {
@@ -28,6 +30,8 @@ class gradesAdminController extends Controller
         $student = User::where('name', '=', $request->student)->get();
         $course = Course::where('name', '=', $request->course)->where('user_id', '=', $student[0]->id)->get();
         Course::where('id', '=', $course[0]->id)->where('user_id', '=', $student[0]->id)->update(["grade" => $request->grade]);
+
+        Mail::to($student[0]->email)->send(new GradeEntered($student[0]->name, $course[0]->name));
 
         return redirect()->route('home');
     }
