@@ -8,6 +8,6 @@ class gradesAdminController extends Controller
 {
     public function index()
     {
-        dd('ok');
+        return view('layouts.admin_grades');
     }
 }

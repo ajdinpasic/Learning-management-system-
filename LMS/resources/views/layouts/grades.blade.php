@@ -9,8 +9,8 @@
       rel="stylesheet"
     />
     
-    <link rel="stylesheet" href="assets/css/tailwind.output.css" />
-      <script src="assets/js/init-alpine.js"></script> 
+    <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+      <script src="/assets/js/init-alpine.js"></script> 
     <!-- <script>@yield('js1')</script> THIS IS OLD-->
 
     <script
