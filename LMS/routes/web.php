@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\profileCard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\loginController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\logoutController;
 use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\gradesAdminController;
+use App\Http\Controllers\profileCardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,34 +34,19 @@ Route::view('/login', 'layouts.login')->name('login')->middleware('guest');
 Route::post('/login', [loginController::class, 'post'])->middleware('guest');
 
 Route::post('/logout', [logoutController::class, 'post'])->name('logout')->middleware('auth');
-/*
-Route::get('users/{id}', function ($id) {
-    return view('layouts.profile_card');
-})->name('profile');
-
-Route::get('/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
-
-Route::get('/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
-*/
-
 
 Route::name('user.')->group(function () {
     Route::get('/users/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
 
     Route::get('/users/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
 
-    Route::get('users/{id}', function ($id) {
-        return view('layouts.profile_card');
-    })->name('profile')->middleware('auth');;
+    Route::get('/users/{user}', [profileCardController::class, 'index'])->name('profile')->whereNumber('user')->middleware('auth');
 });
 
-
-
-
 Route::name('admin.')->group(function () {
-    Route::get('/admin/grades', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
+    Route::get('/admins/grades', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
 });
 
 Route::fallback(function () {
-    return view('layouts.404');
+    return view('errors.404');
 });
