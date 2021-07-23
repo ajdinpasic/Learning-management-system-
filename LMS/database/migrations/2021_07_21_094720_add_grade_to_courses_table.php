@@ -14,7 +14,8 @@ class AddGradeToCoursesTable extends Migration
     public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->double('grade', 4, 2)->nullable(); //ADDED default value from within db not from migration
+            $table->double('grade', 4, 2)->nullable(); //ADDED default value from within db not from migration 
+            // changed from 4,2 to 5,2 in db not in migration
         });
     }
 
