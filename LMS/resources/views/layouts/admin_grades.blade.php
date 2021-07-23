@@ -896,7 +896,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Grade</span>
                 <textarea
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="grade"
-                  rows="3"
+                  rows="1"  style="resize:none;"
                   placeholder="Enter numeric grade"
                 ></textarea>
               </label>
@@ -906,15 +906,12 @@
 
               <div class="flex mt-6 text-sm">
                 <label class="flex items-center dark:text-gray-400">
-                  <input
-                    type="checkbox"
-                    class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                  />
+                  
                   <span class="ml-2">
                     <button
                   class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
                 >
-                  Small
+                  Submit
                 </button>
                   </span>
                 </label>
