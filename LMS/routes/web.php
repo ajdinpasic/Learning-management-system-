@@ -45,6 +45,8 @@ Route::name('user.')->group(function () {
 
 Route::name('admin.')->group(function () {
     Route::get('/admins/grades', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
+
+    Route::post('/admins/grades', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
 });
 
 Route::fallback(function () {
