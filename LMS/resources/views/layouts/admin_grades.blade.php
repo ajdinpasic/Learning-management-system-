@@ -910,7 +910,7 @@
                 <textarea
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="grade"
                   rows="1"  style="resize:none;"
-                  placeholder="Enter numeric grade from 0.00 to 100.00"
+                  placeholder="Enter numeric points from 0.00 to the 20.00"
                 ></textarea>
               </label>
               @error('grade')
