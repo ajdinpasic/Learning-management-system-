@@ -14,11 +14,11 @@ class indexController extends Controller
         //$courses = Course::where("department", "=", "IT")->paginate(2);
         //dd($request->user()->course);
         //$courses = $request->user()->course()->paginate(2);
-        $courses = $request->user()->course()->select('name', 'ects')->paginate(12);
+        $courses = $request->user()->course()->select('name', 'ects')->get();
         //$courses = Course::select('name')->where("department", "=", "IT")->paginate(2);
         $total_courses = Course::where("department", "=", "IT")->where("user_id", "=", auth()->user()->id)->count();
 
-        $grades = $request->user()->grade()->select('title', 'grade')->paginate(12);
+        $grades = $request->user()->grade()->select('title', 'grade')->get();
         $total_grades = Grade::where("user_id", "=", auth()->user()->id)->count();
 
         return view('layouts.index', ["courses" => $courses, "total_courses" => $total_courses, "grades" => $grades, "total_grades" => $total_grades]);
