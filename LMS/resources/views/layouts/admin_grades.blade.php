@@ -830,7 +830,7 @@
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="https://github.com/estevanmaito/windmill-dashboard"
+              href="https://github.com/ajdinpasic/Learning-management-system-"
             >
               <div class="flex items-center">
                 <svg
@@ -891,18 +891,32 @@
                   <p style="color:red;">{{ $message }}</p>
               @enderror
               
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Examination</span>
+                <textarea
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="title"
+                  rows="1"  style="resize:none;"
+                  placeholder="e.g. Homework(20%)"
+                ></textarea>
+              </label>
+              @error('title')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+
 
               <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Grade</span>
                 <textarea
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="grade"
                   rows="1"  style="resize:none;"
-                  placeholder="Enter numeric grade"
+                  placeholder="Enter numeric grade from 0.00 to 100.00"
                 ></textarea>
               </label>
               @error('grade')
                   <p style="color:red;">{{ $message }}</p>
               @enderror
+
 
               <div class="flex mt-6 text-sm">
                 <label class="flex items-center dark:text-gray-400">
