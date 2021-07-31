@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Grade;
 use App\Models\Course;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -45,5 +46,10 @@ class User extends Authenticatable
     public function course()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function grade()
+    {
+        return $this->hasMany(Grade::class);
     }
 }
