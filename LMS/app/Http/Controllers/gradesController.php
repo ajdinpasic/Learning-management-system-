@@ -20,7 +20,7 @@ class gradesController extends Controller
             ->where('grades.user_id', '=', $request->user()->id)
             ->sum('grades.grade'); */
 
-        $grades = Grade::selectRaw('sum(grade) AS sum')->where('user_id', '=', $request->user()->id)->groupBy('course_id')->get();
+        //$grades = Grade::selectRaw('sum(grade) AS sum')->where('user_id', '=', $request->user()->id)->groupBy('course_id')->get();
 
         //dd($courses);
         $id = $request->user()->id;

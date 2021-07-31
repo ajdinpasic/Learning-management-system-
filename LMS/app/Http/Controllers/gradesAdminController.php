@@ -7,6 +7,7 @@ use App\Models\Grade;
 use App\Models\Course;
 use App\Mail\GradeEntered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class gradesAdminController extends Controller
@@ -47,5 +48,38 @@ class gradesAdminController extends Controller
             'course_id' => $course[0]->id,
         ]);
         return redirect()->route('home');
+    }
+
+    public function formDelete()
+    {
+        $allStudents = User::select('name')->get();
+        $allCourses = Course::select('name')->distinct()->get();
+        return view('layouts.deleteGrade', ["allStudents" => $allStudents, "allCourses" => $allCourses]);
+    }
+
+    public function showGrades(Request $request)
+    {
+        $student_id = User::select('id')->where('name', '=', $request->student)->first();
+        $course_id = Course::select('id')->where('name', '=', $request->course)->where('user_id', '=', $student_id->id)->first();
+        //dd($course_id);
+        $grades = Grade::select('title', 'grade')->where('user_id', '=', $student_id)->where('course_id', '=', $course_id)->get();
+        dd('ok');
+        //return view('layouts.test', ["grades" => $grades]);
+    }
+
+    public function deleteGrade(Request $request)
+    {
+        $request->validate([
+            "course" => "required",
+            "student" => "required",
+            "grade" => "required",
+
+        ]);
+        dd('ogk');
+
+        $course = Course::select('id')->where('name', '=', $request->course)->get();
+        $student = User::select('id')->where('name', '=', $request->student)->get();
+        $gradeToDelete = Grade::where('user_id', '=', $student[0]->id)->where('course_id', '=', $course[0]->id)->first();
+        dd($gradeToDelete); // missing 
     }
 }
