@@ -17,9 +17,21 @@ class IsProfileForYou
     public function handle(Request $request, Closure $next)
     {
         $user = $request->route()->parameters();
-        $user = $user['user']->id;
-        if ($user != auth()->user()->id) {
-            return back();
+        $user_id = $user['user']->id;
+        $user_role = auth()->user()->role;
+        //dd($user_id);
+        /*if ($user_id != auth()->user()->id) {
+
+            if ($user_role != 'admin') {
+                return back();
+            }
+        } */
+
+        if ($user_role == 'user') {
+            if ($user_id != auth()->user()->id) {
+                return back();
+            }
+            return $next($request);
         }
 
         return $next($request);
