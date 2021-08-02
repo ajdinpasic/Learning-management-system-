@@ -9,6 +9,7 @@ class profileCardController extends Controller
 {
     public function index(User $user)
     {
+        //dd($user);
         return view('layouts.profile_card', ["user" => $user]);
     }
 }

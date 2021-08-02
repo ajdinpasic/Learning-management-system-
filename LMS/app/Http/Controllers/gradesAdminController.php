@@ -49,11 +49,12 @@ class gradesAdminController extends Controller
         ]);
         return redirect()->route('home');
     }
-
+    /*
     public function formDelete()
     {
         $allStudents = User::select('name')->get();
         $allCourses = Course::select('name')->distinct()->get();
+        $allCourses = Grade::select('grade')->distinct()->get();
         return view('layouts.deleteGrade', ["allStudents" => $allStudents, "allCourses" => $allCourses]);
     }
 
@@ -65,7 +66,7 @@ class gradesAdminController extends Controller
         $grades = Grade::select('title', 'grade')->where('user_id', '=', $student_id)->where('course_id', '=', $course_id)->get();
         dd('ok');
         //return view('layouts.test', ["grades" => $grades]);
-    }
+    } */
 
     public function deleteGrade(Request $request)
     {
