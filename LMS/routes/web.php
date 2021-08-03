@@ -44,15 +44,17 @@ Route::name('user.')->group(function () {
 });
 
 Route::name('admin.')->group(function () {
-    Route::get('/admins/grades', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
+    Route::get('/admins/users', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
 
-    Route::post('/admins/grades', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
-
+    Route::post('/admins/users', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
+    /*
+    Route::post('/admins/grades', [gradesAdminController::class, 'store'])->middleware('auth', 'admin'); */
+    /*
     Route::get('/admins/grades/delete', [gradesAdminController::class, 'formDelete'])->name('grades_delete')->middleware('auth', 'admin');
 
     Route::post('/admins/grades/delete', [gradesAdminController::class, 'showGrades'])->middleware('auth', 'admin');
 
-    Route::delete('/admins/grades/delete', [gradesAdminController::class, 'deleteGrade'])->middleware('auth', 'admin');
+    Route::delete('/admins/grades/delete', [gradesAdminController::class, 'deleteGrade'])->middleware('auth', 'admin'); */
 });
 
 Route::fallback(function () {
