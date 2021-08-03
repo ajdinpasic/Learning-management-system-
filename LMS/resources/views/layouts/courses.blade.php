@@ -822,13 +822,14 @@
                     >
                       <th class="px-4 py-3">Name</th>
                       <th class="px-4 py-3">ECTS</th>
+                      <th class="px-4 py-3">Total points</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if($courses->count())
-                  @foreach($courses as $course)
+                  @if(count($query))
+                  @foreach($query as $q)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -848,12 +849,15 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $course->name }}</p>
+                            <p class="font-semibold">{{ $q->name }}</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ $course->ects }}
+                        {{ $q->ects }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $q->sum }}
                       </td>
                       
                     </tr>@endforeach
@@ -880,6 +884,9 @@
                             <p class="font-semibold">No records</p>
                           </div>
                         </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        Not defined
                       </td>
                       <td class="px-4 py-3 text-sm">
                         Not defined
