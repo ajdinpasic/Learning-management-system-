@@ -823,15 +823,16 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">Total points</th>
+                      <th class="px-4 py-3">All grades</th>
+                      
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if(count($query))
-                  @foreach($query as $q)
+                  @if(count($grades))
+                   
+                    @for ($i = 0; $i < count($grades); $i++)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -851,16 +852,22 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $q->name }}</p>
+                              
+                              @for($j = 0; $j < count($grades[$i]); $j++)
+                              <b>{{$grades[$i][$j]->course}}</b>
+                            {{ $grades[$i][$j]->grade."pts:"}}
+                            {{ strstr($grades[$i][$j]->title,'from',true)."|"}}
+                            
+                            @endfor
+                            
+                      @endfor
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                               {{$q ->sum . "pts"}}
-                      </td>
-
                       
-                    </tr>@endforeach
+                      
+                    </tr> 
+                    
                     @else
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
@@ -890,11 +897,13 @@
                       </td>
                       
                     </tr>
+                    
                     @endif
                   </tbody>
                 </table>
               </div>
           </div>
+          
         </main> 
       </div>
     </div>
