@@ -888,13 +888,11 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No records</p>
+                            <p class="font-semibold">No grades entered yet</p>
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        Not defined
-                      </td>
+                      
                       
                     </tr>
                     
