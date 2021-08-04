@@ -47,6 +47,10 @@ Route::name('admin.')->group(function () {
     Route::get('/admins/users', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
 
     Route::post('/admins/users', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
+
+    Route::put('/admins/users', [gradesAdminController::class, 'update'])->middleware('auth', 'admin');
+
+    Route::delete('/admins/users', [gradesAdminController::class, 'delete'])->middleware('auth', 'admin');
     /*
     Route::post('/admins/grades', [gradesAdminController::class, 'store'])->middleware('auth', 'admin'); */
     /*
