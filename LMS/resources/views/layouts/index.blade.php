@@ -207,7 +207,7 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('admin.grades') }}">Enter new grade</a>
+                    <a class="w-full" href="{{ route('admin.grades') }}">Grades and students</a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -995,12 +995,12 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No records</p>
+                            <p class="font-semibold">No courses registered yet</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        Not defined
+                        ECTS points not defined yet
                       </td>
                       
                     </tr>
@@ -1074,12 +1074,12 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No records</p>
+                            <p class="font-semibold">No examination entered yet</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        Not defined
+                        No grades entered yet
                       </td>
                       
                     </tr>
