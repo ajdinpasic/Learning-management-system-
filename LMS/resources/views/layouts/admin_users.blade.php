@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modals - Windmill Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -16,12 +21,10 @@
     <script src="/assets/js/init-alpine.js"></script>
     <!-- You need focus-trap.js to make the modal accessible -->
     <script src="/assets/js/focus-trap.js" defer></script>
-    <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
-      defer
-    ></script>
+    
     <script src="/assets/js/init-alpine.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
     
 
   </head>
@@ -916,36 +919,18 @@
                         <div class="flex items-center space-x-4 text-sm">
                           <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit" @click="openModal" id="identifyingClass"
+                            aria-label="Edit"  @click="openModal" id="identifyingClass"
                              onclick="mirza('{{$student->name}}')"
                           >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
-                              ></path>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.311 2.828l2.861 2.861-15.033 15.032-2.859-2.862 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.873-16.873-5.689-5.689z"/></svg>
                           </button>
-                          <button
+                          <button onclick="ajdin('{{$student->name}}')">
+                          <a href="#edit_grade" rel="modal:open"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"/></svg></button></a>
+                          <button onclick="brisem('{{$student->name}}')"
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
+                          > <a href="#delete_grade" rel="modal:open">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg></a>
                           </button>
                         </div>
                       </td>
@@ -1036,7 +1021,7 @@
                   <p style="color:red;">{{ $message }}</p>
               @enderror
               <label class="block text-sm">
-                <span id="here" class="text-gray-700 dark:text-gray-400"></span>
+                <span  class="text-gray-700 dark:text-gray-400"></span>
                 <input type="hidden" name="hiddenValue" id="hiddenValue" value="" />
               </label>
               <label class="block text-sm">
@@ -1075,12 +1060,7 @@
         <footer
           class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
         >
-          <button
-            @click="closeModal"
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
-          >
-            Cancel
-          </button>
+          
           <button
             class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
           >
@@ -1091,6 +1071,134 @@
       </div>
     </div>
     <!-- End of modal backdrop -->
+
+    <!-- edit grade modal begings here -->
+    <div id="edit_grade" class="modal">
+   <div class="mt-4 mb-6">
+          <!-- Modal title -->
+          <p
+             id="heree1" class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
+          >
+            Name of student
+          </p>
+          <!-- Modal description -->
+          <p class="text-sm text-gray-700 dark:text-gray-400">
+             <div
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+            > <form action="{{ route('admin.grades') }}" method="POST">
+              @method('PUT')
+              @csrf
+              
+
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Grades
+                </span>
+                <select
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
+                > @foreach($allGrades as $grade)
+                  <option>{{$grade->title."=>".$grade->grade." for ".$grade->name}}</option>@endforeach
+                </select>
+              </label>
+
+               @error('select')
+                 <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Grade</span>
+                <input
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="e.g. 20.00" name="grade"
+                />
+              </label>
+
+               @error('grade')
+                 <p style="color:red;">{{ $message }}</p> 
+              @enderror
+
+              <label class="block text-sm">
+                <span  id="here1"class="text-gray-700 dark:text-gray-400"></span>
+                <input type="hidden" name="hiddenValue1" id="hiddenValue1" value="" />
+              </label>
+             
+            </div>
+          </p>
+        </div>
+        <footer
+          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
+        >
+          
+          <button
+            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
+          >
+            Accept
+          </button>
+        </footer>
+        </form>
+</div>
+    <!--edit grade modal ends here -->
+
+
+
+    <!-- delete grade modal begins here -->
+
+    <div id="delete_grade" class="modal">
+   <div class="mt-4 mb-6">
+          <!-- Modal title -->
+          <p
+             id="heree2" class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
+          >
+            Name of student
+          </p>
+          <!-- Modal description -->
+          <p class="text-sm text-gray-700 dark:text-gray-400">
+             <div
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+            > <form action="{{ route('admin.grades') }}" method="POST">
+              @method('DELETE')
+              @csrf
+              
+
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Grades
+                </span>
+                <select
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
+                > @foreach($allGrades as $grade)
+                  <option>{{$grade->title."=>".$grade->grade." for ".$grade->name}}</option>@endforeach
+                </select>
+              </label>
+
+               @error('select')
+                 <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+
+              <label class="block text-sm">
+                <span  id="here1"class="text-gray-700 dark:text-gray-400"></span>
+                <input type="hidden" name="hiddenValue2" id="hiddenValue2" value="" />
+              </label>
+             
+            </div>
+          </p>
+        </div>
+        <footer
+          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
+        >
+          
+          <button
+            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
+          >
+            Accept
+          </button>
+        </footer>
+      </form>
+</div>
+
+
+    <!-- delete grade modal ends here -->
   </body>
 </html>
 
@@ -1109,9 +1217,21 @@
  */
     function mirza(id) {
       console.log( id);
-      $("#hiddenValue").val(id);
+     $("#hiddenValue").val(id);
         $("#here").html("Entering grade for "+id);
 
+    }
+
+    function ajdin(id) {
+      console.log(id)
+      $("#hiddenValue1").val(id);
+        $("#heree1").html("Updating grade for "+id);
+    }
+
+    function brisem(id) {
+      console.log(id)
+      $("#hiddenValue2").val(id);
+        $("#heree2").html("Deleting grade for "+id);
     }
 </script>
 
