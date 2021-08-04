@@ -48,9 +48,9 @@
                 class="text-purple-600 hover:underline dark:text-purple-300"
                 href="{{ route('home') }}"
               >
-                Return to home page
-              </a>
-              .
+                return to home page
+              </a>or
+              <a class="text-purple-600 hover:underline dark:text-purple-300" href="{{ URL::previous() }}"> go back </a>
             </p>
           </div>
         </main>
