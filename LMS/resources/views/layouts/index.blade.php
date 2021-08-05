@@ -29,6 +29,7 @@
      <script src="/assets/js/charts-lines.js" defer></script> 
     <script src="/assets/js/charts-pie.js" defer></script> 
       <!-- <style>@yield('css')</style> THIS IS OLD -->
+      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
   </head>
 
   <body>
@@ -1158,6 +1159,9 @@
         </main>
       </div>
     </div>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
   </body>
 </html>
 
