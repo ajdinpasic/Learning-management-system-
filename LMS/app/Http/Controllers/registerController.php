@@ -8,6 +8,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Console\Input\Input;
 
 class registerController extends Controller
 {
@@ -23,11 +24,19 @@ class registerController extends Controller
             'select' => 'required',
             'password' => 'required|min:4|confirmed',
         ]);
+
+        if (User::where('email', '=', $request->email)->exists()) {
+            return back()->withErrors([
+                "email" => "User with this email already exists",
+            ])->withInput();
+        }
+
         $newUser = User::create([
             'name' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
 
         if ($request->select == "IT") {
 
