@@ -49,7 +49,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Username</span>
                 <input
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" type="text" name="username"
+                  placeholder="Jane Doe" type="text" name="username" value="{{old('username')}}"
                 />
               </label>
               @error('username')
@@ -60,7 +60,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Email</span>
                 <input
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="JaneDoe@example.com" type="email" name="email"
+                  placeholder="JaneDoe@example.com" type="email" name="email" value="{{old('email')}}"
                 />
               </label>
               @error('email')
