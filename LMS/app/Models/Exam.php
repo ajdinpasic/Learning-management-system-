@@ -14,4 +14,9 @@ class Exam extends Model
         'scheduled_for',
         'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

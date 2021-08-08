@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Grade::class);
     }
+
+    public function examDate()
+    {
+        return $this->hasMany(Exam::class);
+    }
 }
