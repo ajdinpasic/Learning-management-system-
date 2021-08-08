@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\profileCard;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\examsController;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\gradesController;
@@ -40,6 +41,8 @@ Route::name('user.')->group(function () {
     Route::get('/users/courses', [coursesController::class, 'index'])->name('courses')->middleware('auth');
 
     Route::get('/users/grades', [gradesController::class, 'index'])->name('grades')->middleware('auth');
+
+    Route::get('/users/exams', [examsController::class, 'index'])->name('exams')->middleware('auth');
 
     Route::get('/users/{user:name}', [profileCardController::class, 'index'])->name('profile')->middleware('auth', 'profile');
 });
