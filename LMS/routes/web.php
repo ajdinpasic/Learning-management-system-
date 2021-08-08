@@ -8,6 +8,7 @@ use App\Http\Controllers\gradesController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\datesAdminController;
 use App\Http\Controllers\gradesAdminController;
 use App\Http\Controllers\profileCardController;
 
@@ -51,11 +52,11 @@ Route::name('admin.')->group(function () {
     Route::put('/admins/users', [gradesAdminController::class, 'update'])->middleware('auth', 'admin');
 
     Route::delete('/admins/users', [gradesAdminController::class, 'delete'])->middleware('auth', 'admin');
-    /*
-    Route::post('/admins/grades', [gradesAdminController::class, 'store'])->middleware('auth', 'admin'); */
-    /*
-    Route::get('/admins/grades/delete', [gradesAdminController::class, 'formDelete'])->name('grades_delete')->middleware('auth', 'admin');
 
+    Route::get('/admins/dates', [datesAdminController::class, 'index'])->name('dates')->middleware('auth', 'admin');
+
+    Route::post('/admins/dates', [datesAdminController::class, 'store'])->middleware('auth', 'admin');
+    /*
     Route::post('/admins/grades/delete', [gradesAdminController::class, 'showGrades'])->middleware('auth', 'admin');
 
     Route::delete('/admins/grades/delete', [gradesAdminController::class, 'deleteGrade'])->middleware('auth', 'admin'); */
