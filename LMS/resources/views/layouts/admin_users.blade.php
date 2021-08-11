@@ -853,7 +853,7 @@
                           <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"  @click="openModal" id="identifyingClass"
-                             onclick="mirza('{{$student->name}}')"
+                             onclick="mirza('{{$student->name}}','{{$student->email}}')"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.311 2.828l2.861 2.861-15.033 15.032-2.859-2.862 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.873-16.873-5.689-5.689z"/></svg>
                           </button>
@@ -956,6 +956,10 @@
               <label class="block text-sm">
                 <span  class="text-gray-700 dark:text-gray-400"></span>
                 <input type="hidden" name="hiddenValue" id="hiddenValue" value="" />
+              </label>
+              <label class="block text-sm">
+                <span  class="text-gray-700 dark:text-gray-400"></span>
+                <input type="hidden" name="hiddenValue_post_grade" id="hiddenValue_post_grade" value="" />
               </label>
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Grade</span>
@@ -1148,9 +1152,11 @@
         })
     });
  */
-    function mirza(id) {
+    function mirza(id,email) {
       console.log( id);
+      console.log( email);
      $("#hiddenValue").val(id);
+     $("#hiddenValue_post_grade").val(email);
         $("#here").html("Entering grade for "+id);
 
     }

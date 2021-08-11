@@ -29,6 +29,7 @@ class gradesAdminController extends Controller
 
     public function store(Request $request)
     {
+
         $newGrade = $request->validate([
             "examination" => "required",
             "grade" => "required|numeric|min:00.00|max:100.00",
@@ -45,6 +46,8 @@ class gradesAdminController extends Controller
             "user_id" => $user->id,
             "course_id" => $course->id,
         ]);
+
+        Mail::to($request->hiddenValue_post_grade)->send(new GradeEntered($request->hiddenValue, $request->select));
 
         return redirect()->route('home');
     }
@@ -67,6 +70,7 @@ class gradesAdminController extends Controller
 
         return redirect()->route('home');
     }
+
     public function delete(Request $request)
     {
         $request->validate([
