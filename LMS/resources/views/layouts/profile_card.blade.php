@@ -23,13 +23,8 @@
 	</div>
 	<div class="skills">
 		<h6>Courses</h6> <br>
-		<ul>
-			<li>COURSE 1</li>
-			<li>COURSE 2</li>
-			<li>COURSE 3</li>
-			<li>COURSE 4</li>
-			<li>COURSE 5</li>
-			<li>COURSE 6</li>
+		<ul>@foreach($courses as $course)
+			<li>{{$course->name}} </li>@endforeach
 		</ul>
 	</div>
 </div>
