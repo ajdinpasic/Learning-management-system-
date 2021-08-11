@@ -800,7 +800,7 @@
                 @csrf
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Date</span>
-                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="datetime-local" id="date" name="exam_date">
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="datetime-local" id="date" name="exam_date" value="{{ old('exam_date') }}">
               </label>
               @error('exam_date')
                   <p style="color:red;">{{ $message }}</p>
@@ -811,6 +811,7 @@
                 <span class="text-gray-700 dark:text-gray-400">
                   Course
                 </span>
+                
                 
                 <select
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
@@ -829,6 +830,99 @@
                 </button>
               </form>
             </div>
+
+            <!-- deleting exam date beginns here -->
+            @if ($allDates->count())
+                
+            
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Delete exam date
+            </h4>
+            <div
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+            >
+            <form action="{{route('admin.dates')}}" method="POST">
+                @csrf
+                @method('DELETE')
+
+              
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Exam and date
+                </span>
+                
+                <select
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
+                >@foreach($allDates as $date)
+                  <option>{{ $date->title."=> ".$date->scheduled_for }}</option>@endforeach
+                </select>
+              </label>
+              @error('select')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+               <br>
+              <button
+                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>@endif
+
+
+            <!-- deleting exam date ends here -->
+
+
+            <!-- updating exam date beginns here -->
+            @if($allDates->count())
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Update exam date
+            </h4>
+            <div
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+            >
+            <form action="{{route('admin.dates')}}" method="POST">
+                @csrf
+                @method('PUT')
+
+                
+                <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Date</span>
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="datetime-local" id="date" name="exam_date" value="{{ old('exam_date') }}">
+              </label>
+              @error('exam_date')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Exam and date
+                </span>
+                <select
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
+                >@foreach($allDates as $date)
+                  <option>{{ $date->title."=> ".$date->scheduled_for }}</option>@endforeach
+                </select>
+              </label>
+              @error('select')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+               <br>
+              <button
+                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+
+
+            <!-- updating exam date ends here -->@endif
            
           </div>
         </main>
