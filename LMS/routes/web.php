@@ -59,9 +59,11 @@ Route::name('admin.')->group(function () {
     Route::get('/admins/dates', [datesAdminController::class, 'index'])->name('dates')->middleware('auth', 'admin');
 
     Route::post('/admins/dates', [datesAdminController::class, 'store'])->middleware('auth', 'admin');
-    /*
-    Route::post('/admins/grades/delete', [gradesAdminController::class, 'showGrades'])->middleware('auth', 'admin');
 
+    Route::delete('/admins/dates', [datesAdminController::class, 'delete'])->middleware('auth', 'admin');
+
+    Route::put('/admins/dates', [datesAdminController::class, 'update'])->middleware('auth', 'admin');
+    /*
     Route::delete('/admins/grades/delete', [gradesAdminController::class, 'deleteGrade'])->middleware('auth', 'admin'); */
 });
 
