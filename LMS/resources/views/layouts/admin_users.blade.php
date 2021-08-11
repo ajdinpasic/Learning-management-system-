@@ -851,7 +851,7 @@
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{$student->name}}
+                        <a style="color:blue;"href="{{ route('user.profile',$student->name)}}">{{$student->name}} </a>
                       </td>
                       <td class="px-4 py-3 text-xs">
                         {{$student->email}}
