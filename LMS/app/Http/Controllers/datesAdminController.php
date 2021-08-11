@@ -15,8 +15,8 @@ class datesAdminController extends Controller
     public function index()
     {
         $allCourses = DB::select("SELECT DISTINCT name AS name FROM courses");
-        //dd($allCourses);
-        return view('layouts.admin_dates', ["allCourses" => $allCourses]);
+        $allDates = Exam::select('title', 'scheduled_for')->distinct('title')->get();
+        return view('layouts.admin_dates', ["allCourses" => $allCourses, "allDates" => $allDates]);
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class datesAdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator);
+            return back()->withErrors($validator)->withInput();
         }
         $allStudents = DB::table('users')->join('courses', 'users.id', '=', 'courses.user_id')->where('courses.department', '=', 'IT')->select('users.id')->distinct()->get();
         //dd($allStudents);
@@ -41,6 +41,33 @@ class datesAdminController extends Controller
                 'user_id' => $student_id,
             ]);
         }
+        return redirect()->route('home');
+    }
+    public function delete(Request $request)
+    {
+        $request->validate([
+            "select" => "required",
+        ]);
+        $exam_title_trimmed = strstr($request->select, '=>', true);
+        //dd($exam_title_trimmed);
+        $toDelete = Exam::where('title', $exam_title_trimmed)->delete();
+        return redirect()->route('home');
+    }
+    public function update(Request $request)
+    {
+        $currentTime = date("Y-m-d h:i:sa");
+
+        $validator = Validator::make($request->all(), [
+            'exam_date' => 'required|date|after_or_equal:' . $currentTime,
+            'select' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $exam_title_trimmed = strstr($request->select, '=>', true);
+        $toUpdate = Exam::where('title', $exam_title_trimmed)->update(['scheduled_for' => $request->exam_date]);
+
         return redirect()->route('home');
     }
 }
