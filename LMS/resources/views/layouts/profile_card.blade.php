@@ -13,7 +13,7 @@
 <div class="card-container">
 	<span class="pro">Student</span>
 	<img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
-	<h3>{{$user->name}}</h3>
+	<h3>{{$user->name}} {{""}} {{$user->surname}}</h3>
 	<h6>City name</h6>
 	<p>Information technologies student</p>
 	<div class="buttons">
