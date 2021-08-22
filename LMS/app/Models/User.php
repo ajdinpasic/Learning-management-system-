@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function examDate()
     {
-        return $this->hasMany(Exam::class);
+        return $this->hasMany(Exam::class); //test
     }
 }
