@@ -42,19 +42,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function course()
-    {
-        return $this->hasMany(Course::class);
-    }
-
-    public function grade()
-    {
-        return $this->hasMany(Grade::class);
-    }
-
-    public function examDate()
-    {
-        return $this->hasMany(Exam::class); //test
-    }
 }
