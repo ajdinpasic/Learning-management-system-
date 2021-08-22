@@ -44,6 +44,8 @@ Route::name('user.')->group(function () {
 
     Route::get('/users/exams', [examsController::class, 'index'])->name('exams')->middleware('auth');
 
+    Route::view('/users/attendance', 'layouts.attendance')->name('attendance');
+
     Route::get('/users/{user:name}', [profileCardController::class, 'index'])->name('profile')->middleware('auth', 'profile');
 });
 
