@@ -145,7 +145,7 @@
               </a>
             </li>
             
-            @if(Auth::check() && Auth::user()->role == "admin")
+            @if(Auth::user()->role == "admin")
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -811,13 +811,16 @@
                     >
                       <th class="px-4 py-3">Course</th>
                       <th class="px-4 py-3">Examination date</th>
+                      <th class="px-4 py-3">Classroom</th>
+                      <th class="px-4 py-3">Duration</th>
+                      <th class="px-4 py-3">Proctor</th>
                       <th class="px-4 py-3">Status</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >@if($allExamDates->count())
-                  @foreach($allExamDates as $exam)
+                  >@if($allExams->count())
+                  @foreach($allExams as $exam)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -837,7 +840,7 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $exam->title }}</p>
+                            <p class="font-semibold">{{ $exam->name }}</p>
                           </div>
                         </div>
                       </td>
@@ -845,13 +848,22 @@
                         {{ $exam->scheduled_for }}
                       </td> 
                       <td class="px-4 py-3 text-sm">
+                        {{ $exam->classroom_number }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        {{ $exam->duration_time }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        {{ $exam->proctor }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
                         @php
                             $currentTime = date("Y-m-d h:i:sa");
                         @endphp 
                             @if ($currentTime<=$exam->scheduled_for) 
-                              <p style="color:green;"class="font-semibold">Upcoming</p>
+                              <p style="color:green;"class="font-semibold"><b>Upcoming</b></p>
                             @elseif ($currentTime>$exam->scheduled_for)
-                              <p style="color:red;"class="font-semibold">Overdue</p>
+                              <p style="color:red;"class="font-semibold"><b>Overdue</b></p>
                             @endif
                         
                       </td> 
@@ -882,8 +894,18 @@
                       </td>
                     
                       <td class="px-4 py-3 text-sm">
-                        Not defined yet
-                      </td>
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                    
+                        
+                      </td> 
                       
                     </tr>
                     @endif
