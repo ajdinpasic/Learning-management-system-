@@ -716,7 +716,7 @@
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
-                        <span >{{ auth()->user()->name }}</span>
+                        <span >{{ auth()->user()->name }}{{" "}}{{ auth()->user()->surname }}</span>
                       </a>
                     </li>
                     <li class="flex">
@@ -831,7 +831,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    {{ $total_courses }}
+                    {{ $numberOfCourses }}
                   </p>
                 </div>
               </div>
@@ -859,7 +859,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    {{ $total_exams }}
+                    {{$numberOfExams}}
                   </p>
                 </div>
               </div>
@@ -885,7 +885,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    ?
+                    ??
                   </p>
                 </div>
               </div>
@@ -913,7 +913,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    {{$total_grades}}
+                    {{$numberOfGrades}}
                   </p>
                 </div>
               </div>
@@ -927,15 +927,15 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">ECTS</th>
+                      <th class="px-4 py-3">Course</th>
+                      <th class="px-4 py-3">Total points</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if($courses->count())
-                  @foreach($courses as $course)
+                  @if(count($totalPoints))
+                  @foreach($totalPoints as $point)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -945,7 +945,7 @@
                           >
                             <img
                               class="object-cover w-full h-full rounded-full"
-                              src="data:image/jpeg;base64,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"
+                              src="https://thumbs.dreamstime.com/z/points-word-arrow-showing-towards-right-concept-bullet-numbered-44454128.jpg"
                               alt="img of course"
                               loading="lazy"
                             />
@@ -955,12 +955,12 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $course->name }}</p>
+                            <p class="font-semibold">{{ $point->name }}</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ $course->ects }}
+                        {{ $point->suma }} {{""}} {{"points out of 100%"}}
                       </td>
                       
                     </tr>@endforeach
@@ -985,12 +985,12 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No courses registered yet</p>
+                            <p class="font-semibold">No grades yet</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        ECTS points not defined yet
+                        
                       </td>
                       
                     </tr>
@@ -999,23 +999,23 @@
                 </table>
               </div>
 
-              <!-- test -->
-              <br><br>
+                            <br><br>
                <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Examination</th>
+                      <th class="px-4 py-3">Course</th>
                       <th class="px-4 py-3">Grade</th>
+                      <th class="px-4 py-3">Examination</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if($grades->count())
-                  @foreach($grades as $grade)
+                  @if(count($allGrades))
+                  @foreach($allGrades as $grade)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -1035,12 +1035,15 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $grade->title }}</p>
+                            <p class="font-semibold">{{ $grade->name }}</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ $grade->grade ."pts" }}
+                        {{ $grade->student_grade }} {{""}} {{"points"}}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $grade->examination}}
                       </td>
                       
                     </tr>@endforeach
@@ -1064,12 +1067,15 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No examination entered yet</p>
+                            <p class="font-semibold">No grades entered yet</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        No grades entered yet
+                        
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
                       </td>
                       
                     </tr>
@@ -1077,25 +1083,23 @@
                   </tbody>
                 </table>
               </div>
-              
-
-              <!-- exam dates start here -->
-              <br><br>
-                <div class="w-full overflow-x-auto">
+              <br> <br>
+               <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
+                      <th class="px-4 py-3">Course</th>
                       <th class="px-4 py-3">Exam</th>
-                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Status</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-                  @if($allExamDates->count())
-                  @foreach($allExamDates as $exam)
+                  >@if(count($allExams))
+                  @foreach($allExams as $exam)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -1106,6 +1110,7 @@
                             <img
                               class="object-cover w-full h-full rounded-full"
                               src="https://navdaily.com/wp-content/uploads/2021/04/exam-1575366183.jpg"
+                              alt="img of course"
                               loading="lazy"
                             />
                             <div
@@ -1114,14 +1119,27 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $exam->title }}</p>
+                            <p class="font-semibold">{{ $exam->name }}</p>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ $exam->scheduled_for  }}
-                      </td>
+                        {{ $exam->scheduled_for }}
+                      </td> 
                       
+                      
+                      
+                      <td class="px-4 py-3 text-sm">
+                        @php
+                            $currentTime = date("Y-m-d h:i:sa");
+                        @endphp 
+                            @if ($currentTime<=$exam->scheduled_for) 
+                              <p style="color:green;"class="font-semibold"><b>Upcoming</b></p>
+                            @elseif ($currentTime>$exam->scheduled_for)
+                              <p style="color:red;"class="font-semibold"><b>Overdue</b></p>
+                            @endif
+                        
+                      </td> 
                     </tr>@endforeach
                     @else
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1143,89 +1161,27 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No exams entered yet</p>
+                            <p class="font-semibold">Exam dates not entered yet</p>
                           </div>
                         </div>
                       </td>
+                    
                       <td class="px-4 py-3 text-sm">
-                        No dates entered yet
-                      </td>
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      
                       
                     </tr>
                     @endif
                   </tbody>
                 </table>
               </div>
-
-
-
-              <!-- exam dates end here -->
-            <!-- Charts -->
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Attendance
-            </h2>
-            <div class="grid gap-6 mb-8 md:grid-cols-2">
-              <div
-                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Lecture attendance
-                </h4>
-                <canvas id="pie"></canvas>
-                <div
-                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-                >
-                  <!-- Chart legend -->
-                  <div class="flex items-center">
-                    <span
-                      class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
-                    ></span>
-                    <span>Shirts</span>
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
-                    ></span>
-                    <span>Shoes</span>
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
-                    ></span>
-                    <span>Bags</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-              >
-                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Lab attendance
-                </h4>
-                <canvas id="line"></canvas>
-                <div
-                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-                >
-                  <!-- Chart legend -->
-                  <div class="flex items-center">
-                    <span
-                      class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
-                    ></span>
-                    <span>Organic</span>
-                  </div>
-                  <div class="flex items-center">
-                    <span
-                      class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
-                    ></span>
-                    <span>Paid</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-          <!-- test -->
+
+             
         </main>
       </div>
     </div>

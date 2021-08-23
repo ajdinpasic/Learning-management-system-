@@ -812,7 +812,7 @@
                       <th class="px-4 py-3">Name</th>
                       <th class="px-4 py-3">Abbreviation</th>
                       <th class="px-4 py-3">ECTS</th>
-                      <th class="px-4 py-3">Total points</th>
+                      <th class="px-4 py-3">Final grade</th>
                     </tr>
                   </thead>
                   <tbody
@@ -851,7 +851,7 @@
                       </td>
 
                       <td class="px-4 py-3 text-sm">
-                        hii
+                        {{$course->final}}
                       </td>
                       
                     </tr>@endforeach

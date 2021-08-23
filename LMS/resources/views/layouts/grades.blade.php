@@ -812,16 +812,17 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">All grades</th>
-                      
+                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Grade</th>
+                      <th class="px-4 py-3">Maximum</th>
+                      <th class="px-4 py-3">Examination</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if(count($grades))
-                   
-                    @for ($i = 0; $i < count($grades); $i++)
+                  @if(count($allGrades))
+                  @foreach($allGrades as $grade)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -832,7 +833,7 @@
                             <img
                               class="object-cover w-full h-full rounded-full"
                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwkyreD9VlahCEVSeCn59PiCKfHyr8MYmr7w&usqp=CAU"
-                              alt="img of grade"
+                              alt="img of course"
                               loading="lazy"
                             />
                             <div
@@ -841,22 +842,22 @@
                             ></div>
                           </div>
                           <div>
-                              
-                              @for($j = 0; $j < count($grades[$i]); $j++)
-                              <b>{{$grades[$i][$j]->course}}</b>
-                            {{ $grades[$i][$j]->grade."pts:"}}
-                            {{ strstr($grades[$i][$j]->title,'from',true)."|"}}
-                            
-                            @endfor
-                            
-                      @endfor
+                            <p class="font-semibold">{{ $grade->name }}</p>
                           </div>
                         </div>
                       </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $grade->student_grade }} {{""}} {{"pts"}}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $grade->max_grade }} {{""}} {{"pts"}}
+                      </td>
+
+                      <td class="px-4 py-3 text-sm">
+                        {{$grade->examination}}
+                      </td>
                       
-                      
-                    </tr> 
-                    
+                    </tr>@endforeach
                     @else
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
@@ -877,19 +878,113 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No grades entered yet</p>
+                            <p class="font-semibold">Not defined yet</p>
                           </div>
                         </div>
                       </td>
-                      
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
                       
                     </tr>
-                    
                     @endif
                   </tbody>
                 </table>
               </div>
           </div>
+
+            <br> <br>
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Total points</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                  >
+                  @if(count($totalPoints))
+                  @foreach($totalPoints as $point)
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://thumbs.dreamstime.com/z/points-word-arrow-showing-towards-right-concept-bullet-numbered-44454128.jpg"
+                              alt="img of course"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">{{ $point->name }}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $point->suma }} {{""}} {{"pts"}} {{"out of 100%"}}
+                      </td>
+                      
+                      
+                    </tr>@endforeach
+                    @else
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs="
+                              alt="not found"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">Not defined yet</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      
+                      
+                    </tr>
+                    @endif
+                  </tbody>
+                </table>
+              </div>
+          </div>
+
+
+
+
           
         </main> 
       </div>
