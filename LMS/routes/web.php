@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\profileCard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examsController;
@@ -44,7 +45,7 @@ Route::name('user.')->group(function () {
 
     Route::get('/users/exams', [examsController::class, 'index'])->name('exams')->middleware('auth');
 
-    Route::view('/users/attendance', 'layouts.attendance')->name('attendance');
+    Route::get('/users/attendance', [attendanceController::class, 'index'])->name('attendance')->middleware('auth');
 
     Route::get('/users/{user:name}', [profileCardController::class, 'index'])->name('profile')->middleware('auth', 'profile');
 });
