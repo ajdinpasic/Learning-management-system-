@@ -20,7 +20,7 @@ class attendanceController extends Controller
             $final_courses[$i] = $allCourses[$i]->name;
         }
 
-        $attendance = [];
+        $lecture_attendance = [];
 
         $k = 0;
 
@@ -29,13 +29,35 @@ class attendanceController extends Controller
 
             $value = Course::select('id')->where('name', $name_to_compare)->first();
 
-            $attendance[] = DB::table('user_attendances')->join('users', 'user_attendances.user_id', '=', 'users.id')->join('courses', 'courses.id', '=', 'user_attendances.course_id')->where('user_attendances.user_id', $user_id)->where('user_attendances.course_id', $value->id)->groupBy('user_attendances.course_id')->orderBy('courses.name')->count();
+            $lecture_attendance[] = DB::table('user_attendances')->join('users', 'user_attendances.user_id', '=', 'users.id')->join('courses', 'courses.id', '=', 'user_attendances.course_id')->where('user_attendances.user_id', $user_id)->where('user_attendances.course_id', $value->id)->where('user_attendances.type', "Lecture attendance")->where('user_attendances.present', 1)->groupBy('user_attendances.course_id')->orderBy('courses.name')->count();
         }
 
 
+        $lab_attendance = [];
+
+        $j = 0;
+
+        foreach ($allCourses as $key => $value) {
+            $name_to_compare = $allCourses[$j++]->name;
+
+            $value = Course::select('id')->where('name', $name_to_compare)->first();
+
+            $lab_attendance[] = DB::table('user_attendances')->join('users', 'user_attendances.user_id', '=', 'users.id')->join('courses', 'courses.id', '=', 'user_attendances.course_id')->where('user_attendances.user_id', $user_id)->where('user_attendances.course_id', $value->id)->where('user_attendances.type', "Lab attendance")->where('user_attendances.present', 1)->groupBy('user_attendances.course_id')->orderBy('courses.name')->count();
+        }
+
+        $total_attendance = [];
+
+        $p = 0;
+
+        foreach ($allCourses as $key => $value) {
+            $name_to_compare = $allCourses[$p++]->name;
+
+            $value = Course::select('id')->where('name', $name_to_compare)->first();
+
+            $total_attendance[] = DB::table('user_attendances')->join('users', 'user_attendances.user_id', '=', 'users.id')->join('courses', 'courses.id', '=', 'user_attendances.course_id')->where('user_attendances.user_id', $user_id)->where('user_attendances.course_id', $value->id)->where('user_attendances.present', 1)->groupBy('user_attendances.course_id')->orderBy('courses.name')->count();
+        }
 
 
-
-        return view('layouts.attendance')->with('final_courses', json_encode($final_courses, JSON_NUMERIC_CHECK))->with('attendance', json_encode($attendance, JSON_NUMERIC_CHECK));
+        return view('layouts.attendance')->with('final_courses', json_encode($final_courses), JSON_NUMERIC_CHECK)->with('lecture_attendance', json_encode($lecture_attendance), JSON_NUMERIC_CHECK)->with('lab_attendance', json_encode($lab_attendance), JSON_NUMERIC_CHECK)->with('total_attendance', json_encode($total_attendance), JSON_NUMERIC_CHECK);
     }
 }
