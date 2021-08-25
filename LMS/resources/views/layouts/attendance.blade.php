@@ -806,27 +806,56 @@
             <div class="panel panel-default">
                 
                 <div class="panel-body">
-                    <canvas id="canvas" height="280" width="600"></canvas>
+                    <canvas id="lecture" height="240" width="600"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<br><br> <hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="panel panel-default">
+                
+                <div class="panel-body">
+                    <canvas id="lab" height="240" width="600"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br> <hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="panel panel-default">
+                
+                <div class="panel-body">
+                    <canvas id="total" height="240" width="600"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script>
-    var final_courses = <?php echo $final_courses; ?>;
-    var attendance = <?php echo $attendance; ?>;
-    var barChartData = {
+
+      window.onload = function() {
+        var final_courses = <?php echo $final_courses; ?>;
+    var lecture_attendance = <?php echo $lecture_attendance; ?>;
+var barChartData = {
         labels: final_courses,
         datasets: [{
-            label: 'Attendance per each course',
+            label: 'Lecture attendance per each course',
             backgroundColor: "#6a5acd",
-            data: attendance
+            data: lecture_attendance
         }]
     };
 
-    window.onload = function() {
-        var ctx = document.getElementById("canvas").getContext("2d");
+        var ctx = document.getElementById("lecture").getContext("2d");
         window.myBar = new Chart(ctx, {
             type: 'bar',
             data: barChartData,
@@ -841,16 +870,77 @@
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Each attendence is equal to one class'
+                    text: 'Total number of lecture classes is 25'
                 }
             }
         });
+         var final_courses = <?php echo $final_courses; ?>;
+    var lab_attendance = <?php echo $lab_attendance; ?>;
+    var barChartData = {
+        labels: final_courses,
+        datasets: [{
+            label: 'Lab attendance per course',
+            backgroundColor: "green",
+            data: lab_attendance
+        }]
     };
+
+        var ctx = document.getElementById("lab").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Total number of lab classes is 25'
+                }
+            }
+        });
+
+
+        var final_courses = <?php echo $final_courses; ?>;
+    var total_attendance = <?php echo $total_attendance; ?>;
+    var barChartData = {
+        labels: final_courses,
+        datasets: [{
+            label: 'Total attendance per course',
+            backgroundColor: "orange",
+            data: total_attendance
+        }]
+    };
+
+        var ctx = document.getElementById("total").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'doughnut',
+            data: barChartData,
+            options: {
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: '#c1c1c1',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Total number of classes is 50'
+                }
+            }
+        });
+
+    };
+
+
 </script>
-
-
-
-
 
 
              </main>
