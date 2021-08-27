@@ -48,6 +48,8 @@ Route::name('user.')->group(function () {
     Route::get('/users/attendance', [attendanceController::class, 'index'])->name('attendance')->middleware('auth');
 
     Route::get('/users/{user:name}', [profileCardController::class, 'index'])->name('profile')->middleware('auth', 'profile');
+
+    Route::post('/users/{user:name}', [profileCardController::class, 'upload'])->middleware('auth', 'profile');
 });
 
 Route::name('admin.')->group(function () {
