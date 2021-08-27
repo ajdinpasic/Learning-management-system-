@@ -912,6 +912,11 @@
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
+                <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Scores
+            </h4>
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
@@ -919,6 +924,7 @@
                     >
                       <th class="px-4 py-3">Course</th>
                       <th class="px-4 py-3">Total points</th>
+                      
                     </tr>
                   </thead>
                   <tbody
@@ -953,6 +959,7 @@
                         {{ $point->suma }} {{""}} {{"points out of 100%"}}
                       </td>
                       
+                      
                     </tr>@endforeach
                    
                     @else
@@ -983,6 +990,7 @@
                         
                       </td>
                       
+                      
                     </tr>
                     @endif
                   </tbody>
@@ -992,6 +1000,11 @@
                             <br><br>
                <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
+                  <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Grades
+            </h4>
                   <thead>
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
@@ -1073,9 +1086,101 @@
                   </tbody>
                 </table>
               </div>
+
+              <br> <br>
+
+               <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                       Attendance
+                   </h4>
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">Course</th>
+                      <th class="px-4 py-3">Total attendance</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                  >
+                  @if(count($totalAttendance))
+                  @foreach($totalAttendance as $attendance)
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://assets-global.website-files.com/60229d0e0f4cf7393c63e573/6076f398428c3f076246d93e_template-vignette-ATTENDANCE-SHEET-1200x900.jpeg"
+                              alt="img of course"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">{{ $attendance->name }}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $attendance->prisustvo }} {{""}} {{"classes present out of 50"}}
+                      </td>
+                      
+                      
+                    </tr>@endforeach
+                   
+                    @else
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs="
+                              alt="not found"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">No attendance yet</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      
+                      
+                    </tr>
+                    @endif
+                  </tbody>
+                </table>
+              </div>
+
               <br> <br>
                <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
+                <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Exams
+            </h4>
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
@@ -1168,7 +1273,7 @@
                     @endif
                   </tbody>
                 </table>
-              </div>
+              </div> <br> <br>
           </div>
 
              
