@@ -1226,11 +1226,12 @@
                       
                       <td class="px-4 py-3 text-sm">
                         @php
-                            $currentTime = date("Y-m-d h:i:sa");
+                            $currentTime = date("Y-m-d H:i:s"); // curent time
+                            $examTime = $exam->scheduled_for;  // exam time
                         @endphp 
-                            @if ($currentTime<=$exam->scheduled_for) 
+                            @if ($currentTime<=$examTime) 
                               <p style="color:green;"class="font-semibold"><b>Upcoming</b></p>
-                            @elseif ($currentTime>$exam->scheduled_for)
+                            @elseif ($currentTime>$examTime)
                               <p style="color:red;"class="font-semibold"><b>Overdue</b></p>
                             @endif
                         
