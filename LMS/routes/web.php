@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\profileCard;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\examsController;
@@ -10,6 +9,8 @@ use App\Http\Controllers\gradesController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\coursesController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\adminUsersController;
+use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\datesAdminController;
 use App\Http\Controllers\gradesAdminController;
 use App\Http\Controllers\profileCardController;
@@ -53,7 +54,7 @@ Route::name('user.')->group(function () {
 });
 
 Route::name('admin.')->group(function () {
-    Route::get('/admins/users', [gradesAdminController::class, 'index'])->name('grades')->middleware('auth', 'admin');
+    Route::get('/admins/users', [adminUsersController::class, 'index'])->name('grades')->middleware('auth', 'admin');
 
     Route::post('/admins/users', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
 
