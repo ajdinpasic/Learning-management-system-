@@ -192,27 +192,27 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('admin.dates') }}">
+                    <a class="w-full" href="#">
                       Exam dates
                     </a>
                   </li>
+                  @if(count($adminCourses))
+                  @foreach($adminCourses as $course)
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
+                    <a class="w-full" href="{{route('admin.courses',$course->name)}}">
+                      {{$course->name}}
                     </a>
                   </li>
-                  <li
+                  
+                  @endforeach
+                  @else 
+                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
+                    <a class="w-full" href="#">No courses, contact your faculty</a>
+                  </li>@endif
                 </ul>
               </template>
             </li>
