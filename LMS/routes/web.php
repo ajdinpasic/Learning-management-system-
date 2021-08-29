@@ -12,6 +12,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\adminUsersController;
 use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\datesAdminController;
+use App\Http\Controllers\adminCourseController;
 use App\Http\Controllers\gradesAdminController;
 use App\Http\Controllers\profileCardController;
 
@@ -56,21 +57,9 @@ Route::name('user.')->group(function () {
 Route::name('admin.')->group(function () {
     Route::get('/admins/users', [adminUsersController::class, 'index'])->name('grades')->middleware('auth', 'admin');
 
-    Route::post('/admins/users', [gradesAdminController::class, 'store'])->middleware('auth', 'admin');
+    Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin');
 
-    Route::put('/admins/users', [gradesAdminController::class, 'update'])->middleware('auth', 'admin');
-
-    Route::delete('/admins/users', [gradesAdminController::class, 'delete'])->middleware('auth', 'admin');
-
-    Route::get('/admins/dates', [datesAdminController::class, 'index'])->name('dates')->middleware('auth', 'admin');
-
-    Route::post('/admins/dates', [datesAdminController::class, 'store'])->middleware('auth', 'admin');
-
-    Route::delete('/admins/dates', [datesAdminController::class, 'delete'])->middleware('auth', 'admin');
-
-    Route::put('/admins/dates', [datesAdminController::class, 'update'])->middleware('auth', 'admin');
-    /*
-    Route::delete('/admins/grades/delete', [gradesAdminController::class, 'deleteGrade'])->middleware('auth', 'admin'); */
+    Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->middleware('auth', 'admin');
 });
 
 Route::fallback(function () {
