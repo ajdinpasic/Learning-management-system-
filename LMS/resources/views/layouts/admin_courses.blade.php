@@ -39,6 +39,7 @@
           
           <script src="/assets/js/init-alpine.js"></script>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
   </head>
   <body>  
     
@@ -1098,6 +1099,10 @@
 
 </div>
     <!--edit grade modal ends here -->
+
+     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
   </body>
 </html>
 

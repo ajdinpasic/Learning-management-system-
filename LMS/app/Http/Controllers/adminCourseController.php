@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
 use App\Models\Exam;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
 
 class adminCourseController extends Controller
 {
@@ -33,7 +34,7 @@ class adminCourseController extends Controller
         $currentTime = date("Y-m-d H:i:s"); // curent time
 
         if (strtotime($request->duration) < strtotime($time1) || strtotime($request->duration) > strtotime($time2)) {
-            //Toastr::error('Creditentials do not match');
+            Toastr::error('Duration needs to be between 5 minutes and 3 hours');
             return back()->withErrors([
                 "duration" => "Duration needs to be between 5 minutes and 3 hours",
             ]);
@@ -46,6 +47,7 @@ class adminCourseController extends Controller
 
 
         if ($examTime < $limit) {
+            Toastr::success('You may schedule exam only 7 days ahead!');
             return back()->withErrors([
                 "schedule_for" => "You may schedule exam only 7 days ahead!",
             ]);
@@ -56,6 +58,7 @@ class adminCourseController extends Controller
         $time4 = "16:00:00";
         $secondExamTime = date("H:i:s", strtotime($examTime));
         if ($secondExamTime > $time4 || $secondExamTime < $time3) {
+            Toastr::success('You may schedule exam only between 09:00 and 16:00!');
             return back()->withErrors([
                 "schedule_for" => "You may schedule exam only between 09:00 and 16:00!",
             ]);
