@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\User;
 use App\Models\Course;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
@@ -73,5 +75,37 @@ class adminCourseController extends Controller
         ]);
 
         return redirect()->route('home');
+    }
+
+    public function enterGrade(User $user, $course)
+    {
+        return view('actions.action_grades', ["course" => $course, "user" => $user]);
+    }
+
+    public function postGrade(User $user, Request $request)
+    {
+        //dd($request->request);
+        $request->validate([
+
+            'examination' => 'required',
+            'max_grade' =>  'required|numeric',
+            'student_grade' =>  'required|numeric',
+
+        ]);
+
+        $course = Course::where("name", $request->hiddenValueCourse)->first();
+
+        Grade::create([
+
+            "max_grade" => $request->max_grade,
+            "student_grade" => $request->student_grade,
+            "examination" => $request->examination,
+            "user_id" => $user->id,
+            "course_id" => $course->id,
+        ]);
+
+        Toastr::success("Exam is entered into the system!");
+
+        return back();
     }
 }
