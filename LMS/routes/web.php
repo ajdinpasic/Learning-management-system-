@@ -55,11 +55,19 @@ Route::name('user.')->group(function () {
 });
 
 Route::name('admin.')->group(function () {
-    Route::get('/admins/users', [adminUsersController::class, 'index'])->name('users')->middleware('auth', 'admin');
+    Route::get('/admins/users', [adminUsersController::class, 'index'])->name('users')->middleware('auth', 'admin'); // all users 
 
-    Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin');
+    Route::get('/admins/{user:name}/grades/{course}', [adminCourseController::class, 'enterGrade'])->name('grades')->middleware('auth', 'admin');  // form for posting grade
 
-    Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin');
+    Route::post('/admins/{user:name}/grades/{course}', [adminCourseController::class, 'postGrade'])->middleware('auth', 'admin');
+
+    Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
+
+    Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin'); // form for posting exam date
+
+    /*Route::get('admins/{user:name}/grades/{course}', function ($name, $test) {
+        dd($test);
+    }); */
 });
 
 Route::fallback(function () {
