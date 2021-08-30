@@ -47,7 +47,7 @@ class adminCourseController extends Controller
 
 
         if ($examTime < $limit) {
-            Toastr::success('You may schedule exam only 7 days ahead!');
+            Toastr::error('You may schedule exam only 7 days ahead!');
             return back()->withErrors([
                 "schedule_for" => "You may schedule exam only 7 days ahead!",
             ]);
@@ -58,7 +58,7 @@ class adminCourseController extends Controller
         $time4 = "16:00:00";
         $secondExamTime = date("H:i:s", strtotime($examTime));
         if ($secondExamTime > $time4 || $secondExamTime < $time3) {
-            Toastr::success('You may schedule exam only between 09:00 and 16:00!');
+            Toastr::error('You may schedule exam only between 09:00 and 16:00!');
             return back()->withErrors([
                 "schedule_for" => "You may schedule exam only between 09:00 and 16:00!",
             ]);

@@ -59,7 +59,7 @@ Route::name('admin.')->group(function () {
 
     Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin');
 
-    Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->middleware('auth', 'admin');
+    Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin');
 });
 
 Route::fallback(function () {
