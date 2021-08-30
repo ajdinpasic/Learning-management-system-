@@ -5,7 +5,7 @@
 
 
 <style>
-body {background-color: #5a4fcf;}
+body {background-color: #732da5;}
 
 </style>
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
