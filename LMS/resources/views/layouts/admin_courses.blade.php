@@ -19,8 +19,28 @@
      <script src="https://cdn.jsdelivr.net/npm/html-duration-picker/dist/html-duration-picker.min.js"></script>
      
         <style></style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+      <!-- jQuery Modal -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+          <script
+            src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+            defer
+          ></script>
+          <script src="/assets/js/init-alpine.js"></script>
+          <!-- You need focus-trap.js to make the modal accessible -->
+          <script src="/assets/js/focus-trap.js" defer></script>
+          
+          <script src="/assets/js/init-alpine.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
-  <body>
+  <body>  
     
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
@@ -278,12 +298,14 @@
             </li>
           </ul>
           <div class="px-6 my-6">
+            <a href="#edit_grade" rel="modal:open">
             <button
               class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
-              Create account
+               Enter new exam date 
               <span class="ml-2" aria-hidden="true">+</span>
             </button>
+            </a>
           </div>
         </div>
       </aside>
@@ -828,6 +850,7 @@
         </header>
         <main class="h-full pb-16 overflow-y-auto">
           <div class="container grid px-6 mx-auto">
+            
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
@@ -974,7 +997,24 @@
               </div>
               
             </div> <br> <br>
-            <!-- exam form starts here -->
+            <!-- form deleted hereee-->
+
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- edit grade modal begings here -->
+    <div id="edit_grade" class="modal">
+   <div class="mt-4 mb-6">
+          <!-- Modal title -->
+          <label class="block text-sm">
+                <span  id="examhere"class="text-gray-700 dark:text-gray-400"></span>
+                <input type="hidden" name="hiddenValueCourse" id="hiddenValueCourse" value="" />
+              </label>
+          <!-- Modal description -->
+          
+        </div>
+        <!-- exam form starts here -->
             <h4
               class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
             >
@@ -1054,9 +1094,23 @@
               </form>
             </div>
             <!-- exam form ends here -->
-          </div>
-        </main>
-      </div>
-    </div>
+
+
+</div>
+    <!--edit grade modal ends here -->
   </body>
 </html>
+
+<script type="text/javascript">
+
+
+function examModalClicked(name) {
+   
+      console.log(name)
+      $("#hiddenValueCourse").val(name);
+        $("#examhere").html("Entering exam for "+name);
+    
+}
+
+
+</script>
