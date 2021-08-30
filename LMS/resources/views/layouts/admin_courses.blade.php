@@ -299,7 +299,7 @@
           </ul>
           <div class="px-6 my-6">
             <a href="#edit_grade" rel="modal:open">
-            <button
+            <button onclick="examModalClicked('{{$course->name}}')"
               class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
                Enter new exam date 
@@ -1008,7 +1008,7 @@
    <div class="mt-4 mb-6">
           <!-- Modal title -->
           <label class="block text-sm">
-                <span  id="examhere"class="text-gray-700 dark:text-gray-400"></span>
+                <span  id="examhere"class="text-gray-700 dark:text-gray-400">TT</span>
                 <input type="hidden" name="hiddenValueCourse" id="hiddenValueCourse" value="" />
               </label>
           <!-- Modal description -->
@@ -1106,7 +1106,7 @@
 
 function examModalClicked(name) {
    
-      console.log(name)
+      
       $("#hiddenValueCourse").val(name);
         $("#examhere").html("Entering exam for "+name);
     
