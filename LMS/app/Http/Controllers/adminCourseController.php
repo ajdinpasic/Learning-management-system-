@@ -131,4 +131,23 @@ class adminCourseController extends Controller
         Toastr::success("Grade has been edited!");
         return back();
     }
+
+    public function deleteGrade(User $user, $course)
+    {
+        $real_course = Course::where('name', $course)->first();
+        $allGrades = Grade::select('id', 'examination', 'max_grade', 'student_grade')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
+        //dd($allGrades);
+        return view('actions.action_Deletegrades', ["allGrades" => $allGrades, "user" => $user, "course" => $course]);
+    }
+
+    public function removeGrade(User $user, $course, Request $request)
+    {
+        $request->validate([
+            'examination' => 'required',
+        ]);
+
+        Grade::destroy($request->hiddenValueGrade);
+        Toastr::success("Grade has been deleted!");
+        return back();
+    }
 }
