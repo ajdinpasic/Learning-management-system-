@@ -57,9 +57,13 @@ Route::name('user.')->group(function () {
 Route::name('admin.')->group(function () {
     Route::get('/admins/users', [adminUsersController::class, 'index'])->name('users')->middleware('auth', 'admin'); // all users 
 
-    Route::get('/admins/{user:name}/grades/{course}', [adminCourseController::class, 'enterGrade'])->name('grades')->middleware('auth', 'admin');  // form for posting grade
+    Route::get('/admins/{user:name}/enter_grades/{course}', [adminCourseController::class, 'enterGrade'])->name('enter_grades')->middleware('auth', 'admin');  // see form for posting grade
 
-    Route::post('/admins/{user:name}/grades/{course}', [adminCourseController::class, 'postGrade'])->middleware('auth', 'admin');
+    Route::post('/admins/{user:name}/enter_grades/{course}', [adminCourseController::class, 'postGrade'])->middleware('auth', 'admin'); // posting the grade for student
+
+    Route::get('/admins/{user:name}/edit_grades/{course}', [adminCourseController::class, 'editGrade'])->name('edit_grades')->middleware('auth', 'admin'); // see form for editing the grade
+
+    Route::put('/admins/{user:name}/edit_grades/{course}', [adminCourseController::class, 'putGrade'])->middleware('auth', 'admin'); // editing the grade for student
 
     Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
 
