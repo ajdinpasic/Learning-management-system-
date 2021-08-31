@@ -79,7 +79,7 @@ class adminCourseController extends Controller
 
     public function enterGrade(User $user, $course)
     {
-        return view('actions.action_grades', ["course" => $course, "user" => $user]);
+        return view('actions.action_Entergrades', ["course" => $course, "user" => $user]);
     }
 
     public function postGrade(User $user, Request $request)
@@ -106,6 +106,29 @@ class adminCourseController extends Controller
 
         Toastr::success("Exam is entered into the system!");
 
+        return back();
+    }
+    public function editGrade(User $user, $course)
+    {
+        //dd($course);
+        $real_course = Course::where('name', $course)->first();
+        $allGrades = Grade::select('id', 'examination', 'max_grade', 'student_grade')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
+        //dd($allGrades);
+        return view('actions.action_Editgrades', ["allGrades" => $allGrades, "user" => $user, "course" => $course]);
+    }
+
+    public function putGrade(User $user, $course, Request $request)
+    {
+
+        $request->validate([
+            'examination' => 'required',
+            'student_grade' => 'required|numeric|between:0,100',
+        ]);
+
+        $grade_model = Grade::find($request->hiddenValueGrade);
+        $grade_model->student_grade = $request->student_grade;
+        $grade_model->save();
+        Toastr::success("Grade has been edited!");
         return back();
     }
 }
