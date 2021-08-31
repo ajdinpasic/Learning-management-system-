@@ -41,8 +41,7 @@ body {background-color: #732da5;}
             <div
               class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
             > 
-            @if($allGrades->count())
-            @foreach($allGrades as $grade)
+            
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
                   Choose the existing grade 
@@ -50,11 +49,12 @@ body {background-color: #732da5;}
                 
                 <select
                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="examination"
-                >
-                  <option>With max grade of {{$grade->max_grade}} from {{$grade->examination}} student got {{$grade->student_grade}}</option>
+                > @if($allGrades->count())
+            @foreach($allGrades as $grade)
+                  <option>With max grade of {{$grade->max_grade}} from {{$grade->examination}} student got {{$grade->student_grade}}</option>@endforeach 
                   <input type="hidden" name="hiddenValueGrade" id="hiddenValueGrade" value="{{$grade->id}}" />
                 </select>
-                @endforeach 
+                
               </label>
 
 
