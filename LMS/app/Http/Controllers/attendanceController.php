@@ -59,10 +59,12 @@ class attendanceController extends Controller
                 $total_attendance[] = DB::table('user_attendances')->join('users', 'user_attendances.user_id', '=', 'users.id')->join('courses', 'courses.id', '=', 'user_attendances.course_id')->where('user_attendances.user_id', $user_id)->where('user_attendances.course_id', $value->id)->where('user_attendances.present', 1)->groupBy('user_attendances.course_id')->orderBy('courses.name')->count();
             }
 
+            $adminCourses = DB::select("SELECT courses.name FROM courses JOIN course_registrations ON course_registrations.course_id = courses.id JOIN users ON users.id = course_registrations.user_id WHERE course_registrations.user_id = '$user_id' ");
 
-            return view('layouts.attendance')->with('final_courses', json_encode($final_courses), JSON_NUMERIC_CHECK)->with('lecture_attendance', json_encode($lecture_attendance), JSON_NUMERIC_CHECK)->with('lab_attendance', json_encode($lab_attendance), JSON_NUMERIC_CHECK)->with('total_attendance', json_encode($total_attendance), JSON_NUMERIC_CHECK);
+
+            return view('layouts.attendance', ["adminCourses" => $adminCourses])->with('final_courses', json_encode($final_courses), JSON_NUMERIC_CHECK)->with('lecture_attendance', json_encode($lecture_attendance), JSON_NUMERIC_CHECK)->with('lab_attendance', json_encode($lab_attendance), JSON_NUMERIC_CHECK)->with('total_attendance', json_encode($total_attendance), JSON_NUMERIC_CHECK);
         } catch (Exception $E) {
-            return view('layouts.attendance')->with('final_courses', json_encode($final_courses), JSON_NUMERIC_CHECK)->with('lecture_attendance', json_encode($lecture_attendance[]), JSON_NUMERIC_CHECK)->with('lab_attendance', json_encode($lab_attendance[]), JSON_NUMERIC_CHECK)->with('total_attendance', json_encode($total_attendance[]), JSON_NUMERIC_CHECK);
+            return view('layouts.attendance', ["adminCourses" => $adminCourses])->with('final_courses', json_encode($final_courses), JSON_NUMERIC_CHECK)->with('lecture_attendance', json_encode($lecture_attendance[]), JSON_NUMERIC_CHECK)->with('lab_attendance', json_encode($lab_attendance[]), JSON_NUMERIC_CHECK)->with('total_attendance', json_encode($total_attendance[]), JSON_NUMERIC_CHECK);
         }
     }
 }

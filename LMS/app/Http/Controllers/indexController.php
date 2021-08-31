@@ -29,7 +29,6 @@ class indexController extends Controller
 
         $allGrades = DB::select("SELECT  courses.name,grades.student_grade,grades.examination FROM grades JOIN courses ON courses.id = grades.course_id  WHERE grades.user_id = '$user_id'  ORDER BY courses.name ASC LIMIT 2");
 
-        $adminCourses = DB::select("SELECT courses.name FROM courses JOIN course_registrations ON course_registrations.course_id = courses.id JOIN users ON users.id = course_registrations.user_id WHERE course_registrations.user_id = '$user_id' ");
 
 
         $numberOfExams = count($allExams);
@@ -37,6 +36,6 @@ class indexController extends Controller
         $numberOfGrades = count($allGrades);
 
 
-        return view('layouts.index', ["totalPoints" => $totalPoints, "numberOfCourses" => $numberOfCourses, "numberOfExams" => $numberOfExams, "allGrades" => $allGrades, "allExams" => $allExams, "numberOfGrades" => $numberOfGrades, "totalAttendance" => $totalAttendance, "adminCourses" => $adminCourses]);
+        return view('layouts.index', ["totalPoints" => $totalPoints, "numberOfCourses" => $numberOfCourses, "numberOfExams" => $numberOfExams, "allGrades" => $allGrades, "allExams" => $allExams, "numberOfGrades" => $numberOfGrades, "totalAttendance" => $totalAttendance]);
     }
 }
