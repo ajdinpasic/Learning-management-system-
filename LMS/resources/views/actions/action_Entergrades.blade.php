@@ -22,7 +22,7 @@ body {background-color: #732da5;}
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <form method="POST" action="{{route('admin.grades',["user" => $user->name,"course" => $course])}}">
+          <form method="POST" action="{{route('admin.enter_grades',["user" => $user->name,"course" => $course])}}">
                 @csrf
           <h4 class="modal-title">Entering grade for {{$user->name}} from {{$course}}</h4>
           <input type="hidden" name="hiddenValueName" id="hiddenValueCourse" value="{{$user->name}}" />
