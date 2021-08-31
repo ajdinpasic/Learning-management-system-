@@ -528,7 +528,7 @@
                         <div class="flex items-center space-x-4 text-sm">
                             <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Post" onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/grades/{{$course->name}}')" 
+                            aria-label="Post" onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/enter_grades/{{$course->name}}')" 
                           >
                             <svg
               class="w-4 h-4"
@@ -546,7 +546,7 @@
                           </button>
                           <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"
+                            aria-label="Edit" onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/edit_grades/{{$course->name}}')" 
                           >
                             <svg
                               class="w-5 h-5"
