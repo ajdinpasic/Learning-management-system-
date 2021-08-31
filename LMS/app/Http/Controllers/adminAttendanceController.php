@@ -48,4 +48,28 @@ class adminAttendanceController extends Controller
 
         return back();
     }
+
+    public function editAtt(User $user, $course)
+    {
+        //dd($course);
+        $real_course = Course::where('name', $course)->first();
+        $allAttendance = UserAttendance::select('id', 'created_at', 'present')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
+        //dd($allGrades);
+        return view('actions.action_Editatt', ["allAttendance" => $allAttendance, "user" => $user, "course" => $course]);
+    }
+
+    public function putAtt(User $user, $course, Request $request)
+    {
+        $request->validate([
+            'attendance' => 'required',
+            'present' => 'required',
+        ]);
+
+        $att_model = UserAttendance::find($request->hiddenValueAttendance);
+
+        $att_model->present = $request->present;
+        $att_model->save();
+        Toastr::success("Attendance has been edited!");
+        return back();
+    }
 }
