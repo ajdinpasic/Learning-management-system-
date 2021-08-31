@@ -80,6 +80,9 @@ Route::name('admin.')->group(function () {
 
     Route::post('/admins/{user:name}/enter_att/{course}', [adminAttendanceController::class, 'postAtt'])->middleware('auth', 'admin');  // posting attendance for student
 
+    Route::get('/admins/{user:name}/edit_att/{course}', [adminAttendanceController::class, 'editAtt'])->name('editAtt')->middleware('auth', 'admin');  // see form for editing attendance
+
+    Route::put('/admins/{user:name}/edit_att/{course}', [adminAttendanceController::class, 'putAtt'])->middleware('auth', 'admin');  // updating attendace for student
 
 
 
