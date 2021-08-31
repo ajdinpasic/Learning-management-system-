@@ -65,6 +65,12 @@ Route::name('admin.')->group(function () {
 
     Route::put('/admins/{user:name}/edit_grades/{course}', [adminCourseController::class, 'putGrade'])->middleware('auth', 'admin'); // editing the grade for student
 
+    Route::get('/admins/{user:name}/delete_grades/{course}', [adminCourseController::class, 'deleteGrade'])->name('delete_grades')->middleware('auth', 'admin'); // see form for deleting the grade
+
+    Route::delete('/admins/{user:name}/delete_grades/{course}', [adminCourseController::class, 'removeGrade'])->middleware('auth', 'admin'); // deleting the grade for student
+
+    /////////
+
     Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
 
     Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin'); // form for posting exam date
