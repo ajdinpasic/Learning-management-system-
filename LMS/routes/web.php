@@ -73,9 +73,17 @@ Route::name('admin.')->group(function () {
     /////////
 
     Route::get('/admins/grades/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
-
+    ///
     Route::get('/admins/attendance/{course:name}', [adminAttendanceController::class, 'index'])->name('attendance')->middleware('auth', 'admin'); //  all students specific for course
 
+    Route::get('/admins/{user:name}/enter_att/{course}', [adminAttendanceController::class, 'enterAtt'])->name('enter_att')->middleware('auth', 'admin');  // see form for posting attendance
+
+    Route::post('/admins/{user:name}/enter_att/{course}', [adminAttendanceController::class, 'postAtt'])->middleware('auth', 'admin');  // posting attendance for student
+
+
+
+
+    //////
     Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin'); // form for posting exam date
 
     /*Route::get('admins/{user:name}/grades/{course}', function ($name, $test) {
