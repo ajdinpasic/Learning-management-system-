@@ -15,6 +15,7 @@ use App\Http\Controllers\datesAdminController;
 use App\Http\Controllers\adminCourseController;
 use App\Http\Controllers\gradesAdminController;
 use App\Http\Controllers\profileCardController;
+use App\Http\Controllers\adminAttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,9 @@ Route::name('admin.')->group(function () {
 
     /////////
 
-    Route::get('/admins/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
+    Route::get('/admins/grades/{course:name}', [adminCourseController::class, 'index'])->name('courses')->middleware('auth', 'admin'); //  all students specific for course
+
+    Route::get('/admins/attendance/{course:name}', [adminAttendanceController::class, 'index'])->name('attendance')->middleware('auth', 'admin'); //  all students specific for course
 
     Route::post('/admins/{course:name}', [adminCourseController::class, 'upload'])->name('exams')->middleware('auth', 'admin'); // form for posting exam date
 
