@@ -60,7 +60,7 @@ body {background-color: #732da5;}
                         $real_present = "unpresent";
                     }
                 @endphp
-                  <option>Student on {{$real_date}} was {{$real_present}}</option>@endforeach 
+                  <option>Student on {{$real_date}} was {{$real_present}} ({{$attendance->type}})</option>@endforeach 
                   <input type="hidden" name="hiddenValueAttendance" id="hiddenValueAttendance" value="{{$attendance->id}}" />
                 </select>
               </label>
