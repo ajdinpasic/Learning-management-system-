@@ -53,7 +53,7 @@ class adminAttendanceController extends Controller
     {
         //dd($course);
         $real_course = Course::where('name', $course)->first();
-        $allAttendance = UserAttendance::select('id', 'created_at', 'present')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
+        $allAttendance = UserAttendance::select('id', 'type', 'created_at', 'present')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
         //dd($allGrades);
         return view('actions.action_Editatt', ["allAttendance" => $allAttendance, "user" => $user, "course" => $course]);
     }
@@ -70,6 +70,23 @@ class adminAttendanceController extends Controller
         $att_model->present = $request->present;
         $att_model->save();
         Toastr::success("Attendance has been edited!");
+        return back();
+    }
+
+    public function deleteAtt(User $user, $course)
+    {
+        $real_course = Course::where('name', $course)->first();
+        $allAttendance = UserAttendance::select('id', 'type', 'created_at', 'present')->where('user_id', $user->id)->where('course_id', $real_course->id)->get();
+        //dd($allGrades);
+        return view('actions.action_Deleteatt', ["allAttendance" => $allAttendance, "user" => $user, "course" => $course]);
+    }
+    public function removeAtt(User $user, $course, Request $request)
+    {
+        $request->validate([
+            'attendance' => 'required',
+        ]);
+        UserAttendance::destroy($request->hiddenValueAttendance);
+        Toastr::success("Attejndance has been deleted!");
         return back();
     }
 }
