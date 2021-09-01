@@ -10,24 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
-class gradesAdminController extends Controller
+class adminUsersController extends Controller
 {
     public function index()
     {
-        $allStudents = User::select('id', 'name', 'email', 'created_at')->get();
-        $allGrades = DB::select("SELECT grades.title as title, grades.grade as grade, users.name as name FROM grades JOIN users ON grades.user_id = users.id");
-        //$allGrades = Grade::select('title', 'grade')->get();
+        $users = User::select('name', 'surname', 'email', 'created_at', 'avatar')->paginate(10);
+        $numberOfUsers = User::select('name', 'surname', 'email', 'created_at', 'avatar')->count();
 
-        for ($i = 0; $i < count($allStudents); $i++) {
-
-            $user_id = $allStudents[$i]->id;
-            $coursesForStudent = DB::select("SELECT DISTINCT name as name FROM courses");
-        }
-
-        return view('layouts.admin_users', ["allStudents" => $allStudents, "coursesForStudent" => $coursesForStudent, "allGrades" => $allGrades]);
+        return view('layouts.admin_users', ["users" => $users, "numberOfUsers" => $numberOfUsers]);
     }
-
-    public function store(Request $request)
+    /*
+    public function store(Request $request) 
     {
 
         $newGrade = $request->validate([
@@ -49,9 +42,9 @@ class gradesAdminController extends Controller
 
         Mail::to($request->hiddenValue_post_grade)->send(new GradeEntered($request->hiddenValue, $request->select));
 
-        return redirect()->route('home');
-    }
-
+        return redirect()->route('home'); 
+    } */
+    /*
     public function update(Request $request)
     {
         $request->validate([
@@ -68,9 +61,9 @@ class gradesAdminController extends Controller
         $grade->grade = $request->grade;
         $grade->save();
 
-        return redirect()->route('home');
-    }
-
+        return redirect()->route('home'); 
+    } */
+    /*
     public function delete(Request $request)
     {
         $request->validate([
@@ -84,5 +77,5 @@ class gradesAdminController extends Controller
         $grade->delete();
 
         return redirect()->route('home');
-    }
+    } */
 }

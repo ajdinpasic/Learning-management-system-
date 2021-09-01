@@ -20,8 +20,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -43,18 +45,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function course()
+    public function registration()
     {
-        return $this->hasMany(Course::class);
-    }
-
-    public function grade()
-    {
-        return $this->hasMany(Grade::class);
-    }
-
-    public function examDate()
-    {
-        return $this->hasMany(Exam::class);
+        return $this->hasMany(CourseRegistration::class);
     }
 }

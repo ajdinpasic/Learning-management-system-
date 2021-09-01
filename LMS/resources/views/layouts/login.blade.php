@@ -26,13 +26,13 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="assets/img/login-office.jpeg"
+              src="https://www.gannett-cdn.com/presto/2019/05/14/USAT/6717a231-f65a-48f9-ba0d-4486a3785a71-gradpic.jpg"
               alt="Office"
             />
             <img
               aria-hidden="true"
               class="hidden object-cover w-full h-full dark:block"
-              src="assets/img/login-office-dark.jpeg"
+              src="https://www.gannett-cdn.com/presto/2019/05/14/USAT/6717a231-f65a-48f9-ba0d-4486a3785a71-gradpic.jpg"
               alt="Office"
             />
           </div>

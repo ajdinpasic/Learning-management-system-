@@ -89,10 +89,10 @@
                 <span class="ml-4">Grades</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
+             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.html"
+                href="{{route('user.attendance')}}"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
   <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
@@ -147,6 +147,17 @@
             </li>
            
             @if(Auth::check() && Auth::user()->role == "admin")
+
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{route('admin.users')}}"
+              >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="bi bi-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="ml-4">Students</span>
+              </a>
+            </li>
+
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -168,7 +179,7 @@
                       d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                     ></path>
                   </svg>
-                  <span class="ml-4">Admin stuff</span>
+                  <span class="ml-4">Enter exam and grade</span>
                 </span>
                 <svg
                   class="w-4 h-4"
@@ -194,35 +205,25 @@
                   class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                   aria-label="submenu"
                 >
+                  
+                  
+                  @if(count($adminCourses))
+                  @foreach($adminCourses as $course)
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('admin.grades') }}">Grades and students</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{ route('admin.dates') }}">
-                      Exam dates
+                    <a class="w-full" href="{{route('admin.courses',$course->name)}}">
+                      {{$course->name}}
                     </a>
                   </li>
-                  <li
+                  
+                  @endforeach
+                  @else 
+                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
+                    <a class="w-full" href="#">No courses, contact your faculty</a>
+                  </li>@endif
                 </ul>
               </template>
             </li>
@@ -681,8 +682,8 @@
                   aria-haspopup="true"
                 >
                   <img
-                    class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    class="object-cover w-8 h-7 rounded-full"
+                    src="/avatars/{{Auth()->user()->avatar}}"
                     alt=""
                     aria-hidden="true"
                   />
@@ -716,7 +717,7 @@
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
-                        <span >{{ auth()->user()->name }}</span>
+                        <span >{{ auth()->user()->name }} {{" "}} {{auth()->user()->surname}}</span>
                       </a>
                     </li>
                     <li class="flex">
@@ -812,16 +813,17 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">All grades</th>
-                      
+                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Grade</th>
+                      <th class="px-4 py-3">Maximum</th>
+                      <th class="px-4 py-3">Examination</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if(count($grades))
-                   
-                    @for ($i = 0; $i < count($grades); $i++)
+                  @if(count($allGrades))
+                  @foreach($allGrades as $grade)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -832,7 +834,7 @@
                             <img
                               class="object-cover w-full h-full rounded-full"
                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwkyreD9VlahCEVSeCn59PiCKfHyr8MYmr7w&usqp=CAU"
-                              alt="img of grade"
+                              alt="img of course"
                               loading="lazy"
                             />
                             <div
@@ -841,22 +843,22 @@
                             ></div>
                           </div>
                           <div>
-                              
-                              @for($j = 0; $j < count($grades[$i]); $j++)
-                              <b>{{$grades[$i][$j]->course}}</b>
-                            {{ $grades[$i][$j]->grade."pts:"}}
-                            {{ strstr($grades[$i][$j]->title,'from',true)."|"}}
-                            
-                            @endfor
-                            
-                      @endfor
+                            <p class="font-semibold">{{ $grade->name }}</p>
                           </div>
                         </div>
                       </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $grade->student_grade }} {{""}} {{"pts"}}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $grade->max_grade }} {{""}} {{"pts"}}
+                      </td>
+
+                      <td class="px-4 py-3 text-sm">
+                        {{$grade->examination}}
+                      </td>
                       
-                      
-                    </tr> 
-                    
+                    </tr>@endforeach
                     @else
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
@@ -877,19 +879,113 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">No grades entered yet</p>
+                            <p class="font-semibold">Not defined yet</p>
                           </div>
                         </div>
                       </td>
-                      
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
                       
                     </tr>
-                    
                     @endif
                   </tbody>
                 </table>
               </div>
           </div>
+
+            <br> <br>
+            <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Total points</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                  >
+                  @if(count($totalPoints))
+                  @foreach($totalPoints as $point)
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://thumbs.dreamstime.com/z/points-word-arrow-showing-towards-right-concept-bullet-numbered-44454128.jpg"
+                              alt="img of course"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">{{ $point->name }}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ $point->suma }} {{""}} {{"pts"}} {{"out of 100%"}}
+                      </td>
+                      
+                      
+                    </tr>@endforeach
+                    @else
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs="
+                              alt="not found"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">Not defined yet</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      
+                      
+                    </tr>
+                    @endif
+                  </tbody>
+                </table>
+              </div>
+          </div>
+
+
+
+
           
         </main> 
       </div>

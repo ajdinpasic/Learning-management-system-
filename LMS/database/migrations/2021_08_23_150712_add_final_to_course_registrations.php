@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGradeToCoursesTable extends Migration
+class AddFinalToCourseRegistrations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddGradeToCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->double('grade', 4, 2)->nullable(); //ADDED default value from within db not from migration 
-            // changed from 4,2 to 5,2 in db not in migration
+        Schema::table('course_registrations', function (Blueprint $table) {
+            $table->string('final')->default('N/A');
         });
     }
 
@@ -26,7 +25,7 @@ class AddGradeToCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::table('courses', function (Blueprint $table) {
+        Schema::table('course_registrations', function (Blueprint $table) {
             //
         });
     }
