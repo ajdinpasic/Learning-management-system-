@@ -12,6 +12,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\adminUsersController;
 use App\Http\Controllers\attendanceController;
 use App\Http\Controllers\datesAdminController;
+use App\Http\Controllers\finalGradeController;
 use App\Http\Controllers\adminCourseController;
 use App\Http\Controllers\gradesAdminController;
 use App\Http\Controllers\profileCardController;
@@ -87,6 +88,12 @@ Route::name('admin.')->group(function () {
     Route::get('/admins/{user:name}/delete_att/{course}', [adminAttendanceController::class, 'deleteAtt'])->name('deleteAtt')->middleware('auth', 'admin');  // see form for deleting attendance
 
     Route::delete('/admins/{user:name}/delete_att/{course}', [adminAttendanceController::class, 'removeAtt'])->middleware('auth', 'admin');  // deleting attendace for student
+
+    //////////////
+
+    Route::get('/admins/final/{course:name}', [finalGradeController::class, 'index'])->name('finals')->middleware('auth', 'admin'); //  all students specific for course
+
+    Route::post('/admins/final/{course:name}', [finalGradeController::class, 'post'])->middleware('auth', 'admin'); //  conclude final grade
 
 
 
