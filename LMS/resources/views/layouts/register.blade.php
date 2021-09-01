@@ -25,13 +25,13 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="/assets/img/create-account-office.jpeg"
+              src="https://assets-news.housing.com/news/wp-content/uploads/2020/04/09090934/How-to-register-property-and-land-online-in-India-FB-1200x700-compressed.jpg"
               alt="Office"
             />
             <img
               aria-hidden="true"
               class="hidden object-cover w-full h-full dark:block"
-              src="/assets/img/create-account-office-dark.jpeg"
+              src="https://assets-news.housing.com/news/wp-content/uploads/2020/04/09090934/How-to-register-property-and-land-online-in-India-FB-1200x700-compressed.jpg"
               alt="Office"
             />
           </div>
