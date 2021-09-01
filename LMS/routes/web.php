@@ -84,6 +84,10 @@ Route::name('admin.')->group(function () {
 
     Route::put('/admins/{user:name}/edit_att/{course}', [adminAttendanceController::class, 'putAtt'])->middleware('auth', 'admin');  // updating attendace for student
 
+    Route::get('/admins/{user:name}/delete_att/{course}', [adminAttendanceController::class, 'deleteAtt'])->name('deleteAtt')->middleware('auth', 'admin');  // see form for deleting attendance
+
+    Route::delete('/admins/{user:name}/delete_att/{course}', [adminAttendanceController::class, 'removeAtt'])->middleware('auth', 'admin');  // deleting attendace for student
+
 
 
     //////
