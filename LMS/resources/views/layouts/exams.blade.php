@@ -88,10 +88,10 @@
                 <span class="ml-4">Grades</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
+             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.html"
+                href="{{route('user.attendance')}}"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
   <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
@@ -146,6 +146,17 @@
             </li>
             
             @if(Auth::check() && Auth::user()->role == "admin")
+
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{route('admin.users')}}"
+              >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="bi bi-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="ml-4">Students</span>
+              </a>
+            </li>
+
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -196,32 +207,10 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('admin.grades') }}">Grades and students</a>
+                    <a class="w-full" href="">?</a>
                   </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{ route('admin.dates') }}">
-                      Exam dates
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
+                  
+                  
                 </ul>
               </template>
             </li>
@@ -680,8 +669,8 @@
                   aria-haspopup="true"
                 >
                   <img
-                    class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    class="object-cover w-8 h-7 rounded-full"
+                    src="/avatars/{{Auth()->user()->avatar}}"
                     alt=""
                     aria-hidden="true"
                   />
@@ -715,7 +704,7 @@
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
-                        <span >{{ auth()->user()->name }}</span>
+                        <span >{{ auth()->user()->name }}{{" "}} {{auth()->user()->surname}}</span>
                       </a>
                     </li>
                     <li class="flex">
@@ -810,14 +799,18 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Course</th>
+                      <th class="px-4 py-3">Exam</th>
                       <th class="px-4 py-3">Examination date</th>
+                      <th class="px-4 py-3">Classroom</th>
+                      <th class="px-4 py-3">Duration</th>
+                      <th class="px-4 py-3">Proctor</th>
                       <th class="px-4 py-3">Status</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >@if($allExamDates->count())
-                  @foreach($allExamDates as $exam)
+                  >@if($allExams->count())
+                  @foreach($allExams as $exam)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -837,21 +830,36 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $exam->title }}</p>
+                            <p class="font-semibold">{{ $exam->name }}</p>
                           </div>
                         </div>
+                      </td>
+                      <td>
+                        <div>
+                            <p class="font-semibold">{{ $exam->title }}</p>
+                          </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         {{ $exam->scheduled_for }}
                       </td> 
                       <td class="px-4 py-3 text-sm">
+                        {{ $exam->classroom_number }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        {{ $exam->duration_time }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        {{ $exam->proctor }}
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
                         @php
-                            $currentTime = date("Y-m-d h:i:sa");
+                            $currentTime = date("Y-m-d H:i:s"); // curent time
+                            $examTime = $exam->scheduled_for;  // exam time
                         @endphp 
-                            @if ($currentTime<=$exam->scheduled_for) 
-                              <p style="color:green;"class="font-semibold">Upcoming</p>
-                            @elseif ($currentTime>$exam->scheduled_for)
-                              <p style="color:red;"class="font-semibold">Overdue</p>
+                            @if ($currentTime<=$examTime) 
+                              <p style="color:green;"class="font-semibold"><b>Upcoming</b></p>
+                            @elseif ($currentTime>$examTime)
+                              <p style="color:red;"class="font-semibold"><b>Overdue</b></p>
                             @endif
                         
                       </td> 
@@ -880,10 +888,24 @@
                           </div>
                         </div>
                       </td>
-                    
-                      <td class="px-4 py-3 text-sm">
-                        Not defined yet
+                      <td>
+                        <div>
+                            <p class="font-semibold"></p>
+                          </div>
                       </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td> 
+                      <td class="px-4 py-3 text-sm">
+                    
+                        
+                      </td> 
                       
                     </tr>
                     @endif

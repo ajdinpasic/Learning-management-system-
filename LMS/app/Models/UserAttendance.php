@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Exam extends Model
+class UserAttendance extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'scheduled_for',
-        'classroom_number',
-        'duration_time',
-        'proctor',
-        'course_id',
-        'title',
+        'type',
+        'present',
+        "user_id",
+        "course_id",
     ];
 }

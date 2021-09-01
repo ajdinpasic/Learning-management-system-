@@ -8,46 +8,57 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    
     <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
-     <script src="/assets/js/init-alpine.js"></script> 
-    <!-- <script>@yield('js1')</script> THIS IS OLD-->
-    
+    <link rel="stylesheet" href="/assets/css/html-duration-picker.min.d.ts" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-     <script src="/assets/js/init-alpine.js"></script> 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
-      defer
-    ></script>
-     <!-- <script src="assets/js/charts-lines.js" defer></script> 
-    <script src="assets/js/charts-pie.js" defer></script> -->
-      <!-- <style>@yield('css')</style> THIS IS OLD -->
-  </head>
+    <script src="/assets/js/init-alpine.js"></script>
+     
+     <script src="https://cdn.jsdelivr.net/npm/html-duration-picker/dist/html-duration-picker.min.js"></script>
+     
+        <style></style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
-  <body>
+      <!-- jQuery Modal -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+          <script
+            src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+            defer
+          ></script>
+          <script src="/assets/js/init-alpine.js"></script>
+          <!-- You need focus-trap.js to make the modal accessible -->
+          <script src="/assets/js/focus-trap.js" defer></script>
+          
+          <script src="/assets/js/init-alpine.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
+  </head>
+  <body>  
+    
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
-      :class="{ 'overflow-hidden': isSideMenuOpen }"
+      :class="{ 'overflow-hidden': isSideMenuOpen}"
     >
       <!-- Desktop sidebar -->
       <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block"
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href=""
+            href="#"
           >
             Windmill
           </a>
-          <ul class="mt-6">
+           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <span
                 class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
@@ -88,7 +99,7 @@
                 <span class="ml-4">Grades</span>
               </a>
             </li>
-             <li class="relative px-6 py-3">
+            <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="{{route('user.attendance')}}"
@@ -102,7 +113,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="charts.html"
+                href=""
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
   <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
@@ -144,8 +155,6 @@
                 <span class="ml-4">Exam dates</span>
               </a>
             </li>
-            
-           @if(Auth::check() && Auth::user()->role == "admin")
 
             <li class="relative px-6 py-3">
               <a
@@ -157,362 +166,19 @@
               </a>
             </li>
 
-            <li class="relative px-6 py-3">
-              <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                @click="togglePagesMenu"
-                aria-haspopup="true"
-              >
-                <span class="inline-flex items-center">
-                  <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                    ></path>
-                  </svg>
-                  <span class="ml-4">Enter final grade</span>
-                </span>
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-              <template x-if="isPagesMenuOpen">
-                <ul
-                  x-transition:enter="transition-all ease-in-out duration-300"
-                  x-transition:enter-start="opacity-25 max-h-0"
-                  x-transition:enter-end="opacity-100 max-h-xl"
-                  x-transition:leave="transition-all ease-in-out duration-300"
-                  x-transition:leave-start="opacity-100 max-h-xl"
-                  x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                  aria-label="submenu"
-                >
-                  
-                  
-                  @if(count($adminCourses))
-                  @foreach($adminCourses as $course)
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{route('admin.finals',$course->name)}}">
-                      {{$course->name}}
-                    </a>
-                  </li>
-                  
-                  @endforeach
-                  @else 
-                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="#">No courses, contact your faculty</a>
-                  </li>@endif
-                </ul>
-              </template>
-            </li>
-            @endif
-          </ul>
-          
-        </div>
-      </aside>
-      <!-- Mobile sidebar -->
-      <!-- Backdrop -->
-      <div
-        x-show="isSideMenuOpen"
-        x-transition:enter="transition ease-in-out duration-150"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in-out duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-      ></div>
-      <aside
-        class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:hidden"
-        x-show="isSideMenuOpen"
-        x-transition:enter="transition ease-in-out duration-150"
-        x-transition:enter-start="opacity-0 transform -translate-x-20"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in-out duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0 transform -translate-x-20"
-        @click.away="closeSideMenu"
-        @keydown.escape="closeSideMenu"
-      >
-        <div class="py-4 text-gray-500 dark:text-gray-400">
-          <a
-            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="#"
-          >
-            Windmill
-          </a>
-          <ul class="mt-6">
-            <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="index.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  ></path>
-                </svg>
-                <span class="ml-4">Dashboard</span>
-              </a>
-            </li>
-          </ul>
-          <ul>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="forms.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  ></path>
-                </svg>
-                <span class="ml-4">Forms</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-                <span class="ml-4">Cards</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="charts.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                  ></path>
-                  <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                </svg>
-                <span class="ml-4">Charts</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="buttons.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-                  ></path>
-                </svg>
-                <span class="ml-4">Buttons</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="modals.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Modals</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="tables.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                </svg>
-                <span class="ml-4">Tables</span>
-              </a>
-            </li>
-            <li class="relative px-6 py-3">
-              <button
-                class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                @click="togglePagesMenu"
-                aria-haspopup="true"
-              >
-                <span class="inline-flex items-center">
-                  <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                    ></path>
-                  </svg>
-                  <span class="ml-4">Pages</span>
-                </span>
-                <svg
-                  class="w-4 h-4"
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>
-              <template x-if="isPagesMenuOpen">
-                <ul
-                  x-transition:enter="transition-all ease-in-out duration-300"
-                  x-transition:enter-start="opacity-25 max-h-0"
-                  x-transition:enter-end="opacity-100 max-h-xl"
-                  x-transition:leave="transition-all ease-in-out duration-300"
-                  x-transition:leave-start="opacity-100 max-h-xl"
-                  x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                  aria-label="submenu"
-                >
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/login.html">Login</a>
-                  </li> 
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/create-account.html">
-                      Create account
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                  <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
-                </ul>
-              </template>
-            </li>
-            
-          </ul>
           <div class="px-6 my-6">
-            <button
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            <a href="#edit_grade" rel="modal:open">
+            <button onclick="examModalClicked('{{$course->name}}')"
+              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
-              Create account
+               Enter new exam date 
               <span class="ml-2" aria-hidden="true">+</span>
             </button>
+            </a>
           </div>
         </div>
       </aside>
+      
       <div class="flex flex-col flex-1 w-full">
         <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
@@ -633,6 +299,7 @@
                     @click.away="closeNotificationsMenu"
                     @keydown.escape="closeNotificationsMenu"
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
+                    aria-label="submenu"
                   >
                     <li class="flex">
                       <a
@@ -716,7 +383,7 @@
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
-                        <span >{{ auth()->user()->name }}{{" "}} {{auth()->user()->surname}}</span>
+                        <span >{{ auth()->user()->name }}{{" "}}{{ auth()->user()->surname }}</span>
                       </a>
                     </li>
                     <li class="flex">
@@ -742,12 +409,11 @@
                         <span>Settings</span>
                       </a>
                     </li>
-                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
-                    @csrf
                     <li class="flex">
-                      <a href="javascript:{}" onclick="document.getElementById('logoutForm').submit();"
+                      <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                      > 
+                        href="#"
+                      >
                         <svg
                           class="w-4 h-4 mr-3"
                           aria-hidden="true"
@@ -762,24 +428,22 @@
                             d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                           ></path>
                         </svg>
-                        
-                        <span>Log out</span>    
-                        
+                        <span>Log out</span>
                       </a>
                     </li>
-                    </form>
                   </ul>
                 </template>
               </li>
             </ul>
           </div>
         </header>
-        <main class="h-full overflow-y-auto">
-          <div class="container px-6 mx-auto grid">
+        <main class="h-full pb-16 overflow-y-auto">
+          <div class="container grid px-6 mx-auto">
+            
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Courses
+              List of students attending {{$course->name}}
             </h2>
             <!-- CTA -->
             <span
@@ -796,13 +460,18 @@
                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                   ></path>
                 </svg>
-                <span>Welcome to courses</span>
+                <span>Welcome to admin panel</span>
               </div>
             </span>
-            <!-- Cards -->
-           
 
-            <!-- New Table -->
+            
+
+            <!-- With actions -->
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Here you can enter, update and delete grade for each user by clicking on the icons (from left to right).
+            </h4>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -810,17 +479,17 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">Abbreviation</th>
-                      <th class="px-4 py-3">ECTS</th>
-                      <th class="px-4 py-3">Final grade</th>
+                      <th class="px-4 py-3">Student</th>
+                      <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">Registration date</th>
+                      <th class="px-4 py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                  @if(count($allCourses))
-                  @foreach($allCourses as $course)
+                  @if(count($allStudents))
+                  @foreach($allStudents as $user)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -830,8 +499,8 @@
                           >
                             <img
                               class="object-cover w-full h-full rounded-full"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1xW9YuiAfCf-E0HVQcJFREGDDImkzirTpjPzfrVyvbdZzP9KR1GmtiowkoJeso7nJcqo&usqp=CAU"
-                              alt="img of course"
+                              src="/avatars/{{$user->avatar}}"
+                              alt="user photo"
                               loading="lazy"
                             />
                             <div
@@ -840,66 +509,203 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{ $course->name }}</p>
+                            <p class="font-semibold">{{$user->name. " ". $user->surname}}</p>
+                            
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        {{ $course->abbreviation }}
+                      <td class="px-4 py-3 text-xs">
+                        <span
+                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                        >
+                          Attending
+                        </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ $course->ECTS }}
+                        {{$user->created_at}}
                       </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                            <button
+                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Post" onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/enter_grades/{{$course->name}}')" 
+                          >
+                            <svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              role="img"
+              aria-hidden="true"
+            >
+              <path
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+                          </button>
+                          <button
+                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit" onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/edit_grades/{{$course->name}}')" 
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                              ></path>
+                            </svg>
+                          </button>
+                          <button
+                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Delete"  onclick="window.open('http://127.0.0.1:8000/admins/{{$user->name}}/delete_grades/{{$course->name}}')" 
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>@endforeach @endif
 
-                      <td class="px-4 py-3 text-sm">
-                        {{$course->final}}
-                      </td>
-                      
-                    </tr>@endforeach
-                    @else
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3">
-                        <div class="flex items-center text-sm">
-                          <!-- Avatar with inset shadow -->
-                          <div
-                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                          >
-                            <img
-                              class="object-cover w-full h-full rounded-full"
-                              src="https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs="
-                              alt="not found"
-                              loading="lazy"
-                            />
-                            <div
-                              class="absolute inset-0 rounded-full shadow-inner"
-                              aria-hidden="true"
-                            ></div>
-                          </div>
-                          <div>
-                            <p class="font-semibold">Not defined yet</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        
-                      </td>
-                      
-                    </tr>
-                    @endif
+                   
                   </tbody>
-                </table>
+                </table> {{$allStudents->links()}}
               </div>
+              
+            </div> <br> <br>
+            <!-- form deleted hereee-->
+
           </div>
         </main>
       </div>
     </div>
+    <!-- edit grade modal begings here -->
+    <div id="edit_grade" class="modal">
+   <div class="mt-4 mb-6">
+          <!-- Modal title -->
+          <label class="block text-sm">
+                <span  id="examhere"class="text-gray-700 dark:text-gray-400">TT</span>
+                <input type="hidden" name="hiddenValueCourse" id="hiddenValueCourse" value="" />
+              </label>
+          <!-- Modal description -->
+          
+        </div>
+        <!-- exam form starts here -->
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Here you can schedule exam for this course
+            </h4>
+            <div
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+            > 
+              <form method="POST" action="{{route('admin.exams',$course)}}">
+                @csrf
+
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Examination</span>
+                <input
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="Midterm|Final|Quiz#1|Quiz#2" name="examination"
+                />
+              </label>
+              @error('examination')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+              
+
+              <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Classroom number
+                </span>
+                <select
+                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="classroom"
+                >
+                  <option>A14</option>
+                  <option>A15</option>
+                  <option>A17</option>
+                  <option>A18</option>
+                </select>
+              </label>  
+              @error('classroom')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror <br>
+              
+
+              <label class="block text-sm">
+                <span  class="text-gray-700 dark:text-gray-400">Proctor</span>
+                <input
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="John Doe" name="proctor"
+                />
+              </label> 
+              @error('proctor')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror <br>
+
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Date of the exam</span>
+              <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="datetime-local" name="schedule_for">
+              </label> <br>
+              @error('schedule_for')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror <br>
+
+              <label class="block text-sm">
+              <span style="display:block;margin-bottom:5px;" class="text-gray-700 dark:text-gray-400">Duration of the exam</span>
+              <input style="border:1px solid black;"class="html-duration-picker" name="duration">
+              </label>
+              <br>
+              @error('duration')
+                  <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+              <div>
+                <button type="submit"
+                  class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Submit
+                </button>
+              </div>
+              </form>
+            </div>
+            <!-- exam form ends here -->
+
+
+</div>
+    <!--edit grade modal ends here -->
+
+     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
   </body>
 </html>
 
+<script type="text/javascript">
 
+
+function examModalClicked(name) {
+   
+      
+      $("#hiddenValueCourse").val(name);
+        $("#examhere").html("Entering exam for "+name);
+    
+}
+
+
+
+
+</script>

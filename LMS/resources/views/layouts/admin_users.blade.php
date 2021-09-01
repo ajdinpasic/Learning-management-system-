@@ -3,35 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modals - Windmill Dashboard</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <title>LMS</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    
     <link rel="stylesheet" href="/assets/css/tailwind.output.css" />
+     <script src="/assets/js/init-alpine.js"></script> 
+    <!-- <script>@yield('js1')</script> THIS IS OLD-->
+    
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="/assets/js/init-alpine.js"></script>
-    <!-- You need focus-trap.js to make the modal accessible -->
-    <script src="/assets/js/focus-trap.js" defer></script>
-    
-    <script src="/assets/js/init-alpine.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
-    
-
+     
+      <!-- <style>@yield('css')</style> THIS IS OLD -->
+      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
   </head>
+
   <body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
-      :class="{ 'overflow-hidden': isSideMenuOpen}"
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
     >
       <!-- Desktop sidebar -->
       <aside
@@ -88,7 +82,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.html"
+                href="{{route('user.attendance')}}"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
   <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
@@ -99,7 +93,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="charts.html"
+                href=""
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
   <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
@@ -141,8 +135,19 @@
                 <span class="ml-4">Exam dates</span>
               </a>
             </li>
-           
+            
             @if(Auth::check() && Auth::user()->role == "admin")
+
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="{{route('admin.users')}}"
+              >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="bi bi-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span class="ml-4">Students</span>
+              </a>
+            </li>
+
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -193,32 +198,11 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="{{ route('admin.grades') }}">Grades and students</a>
+                    <a class="w-full" href="">??</a>
                   </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{ route('admin.dates') }}">
-                      Exam dates
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
+                  
+                  
+                  
                 </ul>
               </template>
             </li>
@@ -260,8 +244,12 @@
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
                 href="index.html"
               >
                 <svg
@@ -373,12 +361,8 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                aria-hidden="true"
-              ></span>
               <a
-                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="modals.html"
               >
                 <svg
@@ -469,7 +453,7 @@
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
                     <a class="w-full" href="pages/login.html">Login</a>
-                  </li>
+                  </li> 
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
@@ -492,11 +476,12 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
+                  <a class="w-full" href="pages/blank.html">Blank</a>
                   </li>
                 </ul>
               </template>
             </li>
+            
           </ul>
           <div class="px-6 my-6">
             <button
@@ -508,7 +493,7 @@
           </div>
         </div>
       </aside>
-      <div class="flex flex-col flex-1">
+      <div class="flex flex-col flex-1 w-full">
         <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
             class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
@@ -628,7 +613,6 @@
                     @click.away="closeNotificationsMenu"
                     @keydown.escape="closeNotificationsMenu"
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700"
-                    aria-label="submenu"
                   >
                     <li class="flex">
                       <a
@@ -677,8 +661,8 @@
                   aria-haspopup="true"
                 >
                   <img
-                    class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    class="object-cover w-8 h-7 rounded-full"
+                    src="/avatars/{{Auth()->user()->avatar}}"
                     alt=""
                     aria-hidden="true"
                   />
@@ -696,7 +680,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="{{ route('user.profile',auth()->user()) }}"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -712,7 +696,7 @@
                             d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                           ></path>
                         </svg>
-                        <span>Profile</span>
+                        <span >{{ auth()->user()->name }}{{" "}}{{ auth()->user()->surname }}</span>
                       </a>
                     </li>
                     <li class="flex">
@@ -738,11 +722,12 @@
                         <span>Settings</span>
                       </a>
                     </li>
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
+                    @csrf
                     <li class="flex">
-                      <a
+                      <a href="javascript:{}" onclick="document.getElementById('logoutForm').submit();"
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
-                      >
+                      > 
                         <svg
                           class="w-4 h-4 mr-3"
                           aria-hidden="true"
@@ -757,26 +742,29 @@
                             d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                           ></path>
                         </svg>
-                        <span>Log out</span>
+                        
+                        <span>Log out</span>    
+                        
                       </a>
                     </li>
+                    </form>
                   </ul>
                 </template>
               </li>
             </ul>
           </div>
         </header>
-        <main class="h-full pb-16 overflow-y-auto">
-          <div class="container grid px-6 mx-auto">
+        <main class="h-full overflow-y-auto">
+          <div class="container px-6 mx-auto grid">
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Modals
+              Admin panel
             </h2>
             <!-- CTA -->
-            <a
+            <span
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="https://github.com/estevanmaito/windmill-dashboard"
+              
             >
               <div class="flex items-center">
                 <svg
@@ -790,14 +778,120 @@
                 </svg>
                 <span>Welcome to admin panel</span>
               </div>
-              <span>View more &RightArrow;</span>
-            </a>
+            </span>
+            <!-- Cards -->
+            <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Total students
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    {{$numberOfUsers}}
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Total ?
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    ??
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Total ??
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                     ??
+                  </p>
+                </div>
+              </div>
+              <!-- Card -->
+              <div
+                class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <div
+                  class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <p
+                    class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+                  >
+                    Total ?
+                  </p>
+                  <p
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
+                  >
+                    ??
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <h4
-              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
-            >
-              List of all students
-            </h4>
+            <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -805,16 +899,17 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">ID</th>
-                      <th class="px-4 py-3">Name</th>
+                      <th class="px-4 py-3">Student</th>
                       <th class="px-4 py-3">Email</th>
-                      <th class="px-4 py-3">Created at</th>
+                      <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">Enrolled date</th>
                     </tr>
                   </thead>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >@if($allStudents->count())
-                  @foreach($allStudents as $student)
+                  >
+                  @if($users->count())
+                  @foreach($users as $user)
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -824,7 +919,7 @@
                           >
                             <img
                               class="object-cover w-full h-full rounded-full"
-                              src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+                              src="/avatars/{{$user->avatar}}"
                               alt=""
                               loading="lazy"
                             />
@@ -834,343 +929,77 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold">{{$student->id}}</p>
-                            
+                            <a href="{{ route('user.profile',$user->name) }}">
+                            <p class="font-semibold">{{$user->name ." ".$user->surname}}</p>
+                            </a>
                           </div>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        <a style="color:blue;"href="{{ route('user.profile',$student->name)}}">{{$student->name}} </a>
+                        {{$user->email}}
                       </td>
                       <td class="px-4 py-3 text-xs">
-                        {{$student->email}}
+                        <span
+                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                        >
+                          Active
+                        </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{$student->created_at}}
+                        {{$user->created_at}}
                       </td>
+                    </tr>@endforeach 
+                    @else 
+                    <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
-                        <div class="flex items-center space-x-4 text-sm">
-                          <button
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"  @click="openModal" id="identifyingClass"
-                             onclick="mirza('{{$student->name}}','{{$student->email}}')"
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
                           >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.311 2.828l2.861 2.861-15.033 15.032-2.859-2.862 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.873-16.873-5.689-5.689z"/></svg>
-                          </button>
-                          <button onclick="ajdin('{{$student->name}}')">
-                          <a href="#edit_grade" rel="modal:open"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z"/></svg></button></a>
-                          <button onclick="brisem('{{$student->name}}')"
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                          > <a href="#delete_grade" rel="modal:open">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg></a>
-                          </button>
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://media.istockphoto.com/vectors/question-mark-icon-flat-vector-illustration-design-vector-id1162198273?k=6&m=1162198273&s=612x612&w=0&h=3V-VGVRpaD77MFXao1_ZjoTXI8E2KjOJLYOlbv1DDIs="
+                              alt="user photo unknown"
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold">No users registered</p>
+                          </div>
                         </div>
                       </td>
-                      
-                    </tr>@endforeach
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <span
+                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                        >
+                          
+                        </span>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        
+                      </td>
+                    </tr>
                     @endif
-                  </tbody>
-                </table>
-              </div>
+                  </tbody> 
+                </table>  {{$users->links()}}
+              </div> 
               
             </div>
 
+            
+            
             
           </div>
         </main>
       </div>
     </div>
-    <!-- Modal backdrop. This what you want to place close to the closing body tag -->
-    <div
-      x-show="isModalOpen"
-      x-transition:enter="transition ease-out duration-150"
-      x-transition:enter-start="opacity-0"
-      x-transition:enter-end="opacity-100"
-      x-transition:leave="transition ease-in duration-150"
-      x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0"
-      class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center"
-    >
-      <!-- Modal -->
-      <div
-        x-show="isModalOpen"
-        x-transition:enter="transition ease-out duration-150"
-        x-transition:enter-start="opacity-0 transform translate-y-1/2"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-150"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0  transform translate-y-1/2"
-        @click.away="closeModal"
-        @keydown.escape="closeModal"
-        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
-        role="dialog"
-        id="modal"
-      >
-        <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
-        <header class="flex justify-end">
-          <button
-            class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
-            aria-label="close"
-            @click="closeModal"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              role="img"
-              aria-hidden="true"
-            >
-              <path
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-              ></path>
-            </svg>
-          </button>
-        </header>
-        <!-- Modal body -->
-        <div class="mt-4 mb-6">
-          <!-- Modal title -->
-          <p
-             id="here" class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
-          >
-            Name of student
-          </p>
-          <!-- Modal description -->
-          <p class="text-sm text-gray-700 dark:text-gray-400">
-             <div
-              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-            > <form action="{{ route('admin.grades') }}" method="POST">
-              @csrf
-              <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">Examination</span>
-                <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="e.g. Homework(20%)" name="examination"
-                />
-              </label>
-              @error('examination')
-                  <p style="color:red;">{{ $message }}</p>
-              @enderror
-              <label class="block text-sm">
-                <span  class="text-gray-700 dark:text-gray-400"></span>
-                <input type="hidden" name="hiddenValue" id="hiddenValue" value="" />
-              </label>
-              <label class="block text-sm">
-                <span  class="text-gray-700 dark:text-gray-400"></span>
-                <input type="hidden" name="hiddenValue_post_grade" id="hiddenValue_post_grade" value="" />
-              </label>
-              <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">Grade</span>
-                <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="e.g. 20.00" name="grade"
-                />
-              </label>
-
-               @error('grade')
-                 <p style="color:red;">{{ $message }}</p> 
-              @enderror
-              
-
-              <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Courses
-                </span>
-                <select
-                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
-                > @foreach($coursesForStudent as $kurs)
-                  <option>{{$kurs->name}}</option>@endforeach
-                  
-                </select>
-              </label>
-
-               @error('select')
-                 <p style="color:red;">{{ $message }}</p>
-              @enderror
-
-             
-            </div>
-          </p>
-        </div>
-        <footer
-          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
-        >
-          
-          <button
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
-          >
-            Accept
-          </button>
-        </footer>
-        </form>
-      </div>
-    </div>
-    <!-- End of modal backdrop -->
-
-    <!-- edit grade modal begings here -->
-    <div id="edit_grade" class="modal">
-   <div class="mt-4 mb-6">
-          <!-- Modal title -->
-          <p
-             id="heree1" class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
-          >
-            Name of student
-          </p>
-          <!-- Modal description -->
-          <p class="text-sm text-gray-700 dark:text-gray-400">
-             <div
-              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-            > <form action="{{ route('admin.grades') }}" method="POST">
-              @method('PUT')
-              @csrf
-              
-
-              <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Grades
-                </span>
-                <select
-                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
-                > @foreach($allGrades as $grade)
-                  <option>{{$grade->title."=>".$grade->grade." for ".$grade->name}}</option>@endforeach
-                </select>
-              </label>
-
-               @error('select')
-                 <p style="color:red;">{{ $message }}</p>
-              @enderror
-
-              <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">Grade</span>
-                <input
-                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="e.g. 20.00" name="grade"
-                />
-              </label>
-
-               @error('grade')
-                 <p style="color:red;">{{ $message }}</p> 
-              @enderror
-
-              <label class="block text-sm">
-                <span  id="here1"class="text-gray-700 dark:text-gray-400"></span>
-                <input type="hidden" name="hiddenValue1" id="hiddenValue1" value="" />
-              </label>
-             
-            </div>
-          </p>
-        </div>
-        <footer
-          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
-        >
-          
-          <button
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
-          >
-            Accept
-          </button>
-        </footer>
-        </form>
-</div>
-    <!--edit grade modal ends here -->
-
-
-
-    <!-- delete grade modal begins here -->
-
-    <div id="delete_grade" class="modal">
-   <div class="mt-4 mb-6">
-          <!-- Modal title -->
-          <p
-             id="heree2" class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
-          >
-            Name of student
-          </p>
-          <!-- Modal description -->
-          <p class="text-sm text-gray-700 dark:text-gray-400">
-             <div
-              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
-            > <form action="{{ route('admin.grades') }}" method="POST">
-              @method('DELETE')
-              @csrf
-              
-
-              <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Grades
-                </span>
-                <select
-                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
-                > @foreach($allGrades as $grade)
-                  <option>{{$grade->title."=>".$grade->grade." for ".$grade->name}}</option>@endforeach
-                </select>
-              </label>
-
-               @error('select')
-                 <p style="color:red;">{{ $message }}</p>
-              @enderror
-
-
-              <label class="block text-sm">
-                <span  id="here1"class="text-gray-700 dark:text-gray-400"></span>
-                <input type="hidden" name="hiddenValue2" id="hiddenValue2" value="" />
-              </label>
-             
-            </div>
-          </p>
-        </div>
-        <footer
-          class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800"
-        >
-          
-          <button
-            class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type="submit"
-          >
-            Accept
-          </button>
-        </footer>
-      </form>
-</div>
-
-
-    <!-- delete grade modal ends here -->
   </body>
 </html>
-
-<script type="text/javascript"> /*
-    $(function () {
-        $("#identifyingClass").click(function () {
-            //var my_id_value = $(this).data('id');
-            
-           // console.log(my_id_value); 
-            //console.log("test"); 
-            
-           // $(".modal-body #hiddenValue").val(my_id_value);
-           // $("#test").html(my_id_value);
-        })
-    });
- */
-    function mirza(id,email) {
-      console.log( id);
-      console.log( email);
-     $("#hiddenValue").val(id);
-     $("#hiddenValue_post_grade").val(email);
-        $("#here").html("Entering grade for "+id);
-
-    }
-
-    function ajdin(id) {
-      console.log(id)
-      $("#hiddenValue1").val(id);
-        $("#heree1").html("Updating grade for "+id);
-    }
-
-    function brisem(id) {
-      console.log(id)
-      $("#hiddenValue2").val(id);
-        $("#heree2").html("Deleting grade for "+id);
-    }
-</script>
-

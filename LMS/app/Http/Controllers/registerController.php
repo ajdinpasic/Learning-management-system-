@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Mail\Welcome;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\CourseRegistration;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\Input;
@@ -19,59 +20,52 @@ class registerController extends Controller
 
 
         $newUser = $request->validate([
-            'username' => 'required|min:3|max:8|alpha',
-            'email' => 'required|email',
-            'select' => 'required',
+            'name' => 'required|min:3|max:10|alpha',
+            'surname' => 'required|min:3|max:10|alpha',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:4|confirmed',
         ]);
 
-        if (User::where('email', '=', $request->email)->exists()) {
+        /*if (User::where('email', '=', $request->email)->exists()) {
             return back()->withErrors([
                 "email" => "User with this email already exists",
             ])->withInput();
-        }
+        } */
 
         $newUser = User::create([
-            'name' => $request->username,
+            'name' => $request->name,
+            'surname' => $request->surname,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
+        ]);
+
+        //dd($request->id);
+        CourseRegistration::create([
+            'user_id' => $newUser->id,
+            'course_id' => 1,
+        ]);
+
+        CourseRegistration::create([
+            'user_id' => $newUser->id,
+            'course_id' => 2,
+        ]);
+
+        CourseRegistration::create([
+            'user_id' => $newUser->id,
+            'course_id' => 3,
+        ]);
+
+        CourseRegistration::create([
+            'user_id' => $newUser->id,
+            'course_id' => 4,
         ]);
 
 
-        if ($request->select == "IT") {
-
-            Course::create([
-                'name' => "Web development",
-                'ects' => 6,
-                'department' => 'IT',
-                'user_id' => $newUser->id,
-            ]);
-
-            Course::create([
-                'name' => "Mobile development",
-                'ects' => 6,
-                'department' => 'IT',
-                'user_id' => $newUser->id,
-            ]);
-
-            Course::create([
-                'name' => "Data Structures",
-                'ects' => 6,
-                'department' => 'IT',
-                'user_id' => $newUser->id,
-            ]);
-
-            Course::create([
-                'name' => "Business",
-                'ects' => 4,
-                'department' => 'IT',
-                'user_id' => $newUser->id,
-            ]);
-        }
-
         $toUser = $request->email;
-        $userName = $request->username;
-        Mail::to($toUser)->send(new Welcome($userName));
+        $name = $request->name;
+        $surname = $request->surname;
+        Mail::to($toUser)->send(new Welcome($name, $surname));
         return redirect()->route('login');
     }
 }

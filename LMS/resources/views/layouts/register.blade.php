@@ -25,13 +25,13 @@
             <img
               aria-hidden="true"
               class="object-cover w-full h-full dark:hidden"
-              src="/assets/img/create-account-office.jpeg"
+              src="https://assets-news.housing.com/news/wp-content/uploads/2020/04/09090934/How-to-register-property-and-land-online-in-India-FB-1200x700-compressed.jpg"
               alt="Office"
             />
             <img
               aria-hidden="true"
               class="hidden object-cover w-full h-full dark:block"
-              src="/assets/img/create-account-office-dark.jpeg"
+              src="https://assets-news.housing.com/news/wp-content/uploads/2020/04/09090934/How-to-register-property-and-land-online-in-India-FB-1200x700-compressed.jpg"
               alt="Office"
             />
           </div>
@@ -46,13 +46,24 @@
 
               @csrf
               <label class="block text-sm">
-                <span class="text-gray-700 dark:text-gray-400">Username</span>
+                <span class="text-gray-700 dark:text-gray-400">Name</span>
                 <input
                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                  placeholder="Jane Doe" type="text" name="username" value="{{old('username')}}"
+                  placeholder="Jane" type="text" name="name" value="{{old('name')}}"
+                />
+              </label> <br>
+              @error('name')
+                <p style="color:red;">{{ $message }}</p>
+              @enderror
+
+              <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Surname</span>
+                <input
+                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                  placeholder="Doe" type="text" name="surname" value="{{old('surname')}}"
                 />
               </label>
-              @error('username')
+              @error('surname')
                 <p style="color:red;">{{ $message }}</p>
               @enderror
 
@@ -67,22 +78,7 @@
                 <p style="color:red;">{{ $message }}</p>
               @enderror
 
-              <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Department
-                </span>
-                <select style="overflow: hidden;"
-                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="select"
-                  multiple
-                >
-                  <option value="IT">Information technologies</option>
-                  <option value="AR">Architecture</option>
-                  <option value="EEE">Electrical engineering</option>
-                </select>
-              </label>
-              @error('select')
-                <p style="color:red;">{{ $message }}</p>
-              @enderror
+              
 
               <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Password</span>
