@@ -32,3 +32,11 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
 
 ````
 
+## Usage
+
+User needs to sign up and a welcoming email will be sent to its email address. User can log in, if it's successful the home page will be opened with the navigation bar with all main features on the left side. On the right side user can logout and go to its profile and change the profile picture. If you want to have admin permission you should change your "role" column in the "users" table. Everything else remains the same except that you have additional admin features such as seeing all registered users, seeing users enrolled to each course as well as entering, editing, deleting grade and attendance. Admin can conclude final grade as well. <br>
+I manually registered 4 courses directly into the DB and hard-coded their IDs when creating COURSE_REGISTRATIONS objects, so adjust it by youself( have a look at register_controlled.php). 
+
+User->Student
+Admin->Professor
+
