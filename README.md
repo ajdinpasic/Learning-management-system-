@@ -53,3 +53,7 @@ Admin->Professor
 
 - Adding more feature such as departments, semesters, PHP stripe
 - Implementing Vue.js
+
+## References 
+
+Used some layouts and styling from https://github.com/estevanmaito/windmill-dashboard
