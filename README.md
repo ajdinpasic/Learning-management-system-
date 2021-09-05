@@ -20,7 +20,7 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
 3. composer install in cmd
 4. npm install ( I installed html-duration-js via npm)
 5. cp .env.example .env
-    ````
+````
     original .env file is under .gitignore so you should make one by executing this command
     fill out the database creditentials as well as the mail sending creditentials
 ````
