@@ -25,10 +25,10 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
     fill out the database creditentials as well as the mail sending creditentials
     
 ````php
-
-6. php artisan key:generate
-7. php artisan migrate
-8. php artisan serve
+6. code .
+7. php artisan key:generate
+8. php artisan migrate
+9. php artisan serve
 
 ````
 
