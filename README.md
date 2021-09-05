@@ -23,7 +23,8 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
 ````
     original .env file is under .gitignore so you should make one by executing this command
     fill out the database creditentials as well as the mail sending creditentials
-````
+    
+````php
 
 6. php artisan key:generate
 7. php artisan migrate
