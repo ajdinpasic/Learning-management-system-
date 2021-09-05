@@ -1,16 +1,16 @@
 # Student management system
 
-## Description
+## Description 📓 
 
 Student management system is the web application that is meant to be used by professors and students. It offers essential features for students to keep track of their enrolled courses, grades, final grades, total lecture/lab attendance, payment plan and installments. On the other end, professors have ability to enter,edit and delete grade or attendace for each student per enrolled course. Professors can keep track of how many students are attending what course as well as the list of the all students at the university.
 
-## Technologies
+## Technologies 💻
 
 I used Bitnami WAMP stack on my WIN 10 for communicating with the MYSQL DB and running web server on my localhost (127.0.0.1) with php modules. <br>
 <b> Backend: </b> PHP with LARAVEL framework <br>
 <b> Frontend: </b> HTML,CSS,JS with Bootstrap framework
 
-## Installation
+## Installation 🦮
 
 Besides having WAMP, <b> PHP dependency composer </b> is a must.
 
@@ -40,7 +40,7 @@ I manually registered 4 courses directly into the DB and hard-coded their IDs wh
 User->Student <br>
 Admin->Professor
 
-## Features
+## Features 
 
 - authentication
 - authorization
@@ -49,11 +49,11 @@ Admin->Professor
 - csrf protection
 - data representation via tables and charts
 
-## Future
+## Future :
 
 - Adding more feature such as departments, semesters, PHP stripe
 - Implementing Vue.js
 
-## References 
+## References :round_pushpin:
 
 Used some layouts and styling from https://github.com/estevanmaito/windmill-dashboard
