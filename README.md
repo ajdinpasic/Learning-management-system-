@@ -34,9 +34,22 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
 
 ## Usage
 
-User needs to sign up and a welcoming email will be sent to its email address. User can log in, if it's successful the home page will be opened with the navigation bar with all main features on the left side. On the right side user can logout and go to its profile and change the profile picture. If you want to have admin permission you should change your "role" column in the "users" table. Everything else remains the same except that you have additional admin features such as seeing all registered users, seeing users enrolled to each course as well as entering, editing, deleting grade and attendance. Admin can conclude final grade as well. <br> <br>
+User needs to sign up and a welcoming email will be sent to its email address. User can log in, if it's successful the home page will be opened with the navigation bar with all main features on the left side. On the right side user can logout and go to its profile and change the profile picture. If you want to have admin permission you should change your "role" column in the "users" table. Everything else remains the same except that you have additional admin features such as seeing all registered users, seeing users enrolled to each course as well as entering, editing, deleting grade and attendance. Admin can conclude final grade as well. For example: Courses section in the nav menu will contain dropdown bar with title "enter final grade" that will lead you to the admin panel. For working with grades go to Grades section and open "enter grade or exam" and so on .... <br> <br>
 I manually registered 4 courses directly into the DB and hard-coded their IDs when creating COURSE_REGISTRATIONS objects, so adjust it by youself( have a look at register_controlled.php). <br> <br>
 
-User->Student
+User->Student <br>
 Admin->Professor
 
+## Features
+
+- authentication
+- authorization
+- form validation
+- session fixation protection
+- csrf protection
+- data representation via tables and charts
+
+## Future
+
+- Adding more feature such as departments, semesters, PHP stripe
+- Implementing Vue.js
