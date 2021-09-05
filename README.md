@@ -6,8 +6,8 @@ Student management system is the web application that is meant to be used by pro
 
 ## Technologies
 
-I used Bitnami WAMP stack on my WIN 10 for communicating with the MYSQL DB and running web server on my localhost (127.0.0.1) with php modules.
-<b> Backend: </b> PHP with LARAVEL framework
+I used Bitnami WAMP stack on my WIN 10 for communicating with the MYSQL DB and running web server on my localhost (127.0.0.1) with php modules. <br>
+<b> Backend: </b> PHP with LARAVEL framework <br>
 <b> Frontend: </b> HTML,CSS,JS with Bootstrap framework
 
 ## Installation
