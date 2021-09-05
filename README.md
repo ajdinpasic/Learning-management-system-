@@ -14,7 +14,7 @@ I used Bitnami WAMP stack on my WIN 10 for communicating with the MYSQL DB and r
 
 Besides having WAMP, <b> PHP dependency composer </b> is a must.
 
-````
+````php
 1. git clone https://github.com/ajdinpasic/Student-management-system-.git
 2. cd into the project where you have cloned it.
 3. composer install in cmd
@@ -23,7 +23,7 @@ Besides having WAMP, <b> PHP dependency composer </b> is a must.
 ````
     original .env file is under .gitignore so you should make one by executing this command
     fill out the database creditentials as well as the mail sending creditentials
-````
+````php
 
 6. php artisan key:generate
 7. php artisan migrate
